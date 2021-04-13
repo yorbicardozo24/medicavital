@@ -42,8 +42,9 @@ export interface UserLogin {
 }
 
 export interface UserResponse {
-    token: string;
+    userToken: string;
+    createdToken: string;
     userId: string;
     userName: string;
-    role: Roles;
+    userEmail: string;
 }

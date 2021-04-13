@@ -36,10 +36,11 @@ export class AuthService {
         map((res: UserResponse) => {
 
           const user: UserResponse = {
-            token: res.token,
+            userToken: res.userToken,
+            createdToken: res.createdToken,
             userId: res.userId,
             userName: res.userName,
-            role: res.role
+            userEmail: res.userEmail
           };
 
           localStorage.setItem('user', JSON.stringify(user));
@@ -65,7 +66,7 @@ export class AuthService {
     if (userLocalStorage === null || userLocalStorage === undefined) {
       return this.logout();
     }else{
-      const userToken = JSON.parse(localStorage.getItem('user')!).token;
+      const userToken = JSON.parse(localStorage.getItem('user')!).userToken;
       const isExpired = helper.isTokenExpired(userToken);
 
       if (isExpired) {

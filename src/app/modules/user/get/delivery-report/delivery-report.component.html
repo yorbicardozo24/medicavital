@@ -1,1 +1,20 @@
-<p>delivery-report works!</p>
+<div class="p-5">
+    <app-search
+        [user]="user"
+        get="reporte entrega"
+        (onEnter)="search( $event )"
+    ></app-search>
+    <div class="row mt-5" *ngIf="loading && searchDeliveryReport">
+        <div class="col-md-12">
+            <app-loading></app-loading>
+        </div>
+    </div>
+    <div class="row mt-5" *ngIf="!loading">
+        <div class="col-md-3">
+            <app-content
+                [data]="deliveryReport"
+                name="Reporte entrega"
+            ></app-content>
+        </div>
+    </div>
+</div>

@@ -12,6 +12,24 @@
     --color-secondary-rgba: rgba(144, 195, 62, 0.9);
 }
 
+body {
+    background: #F2F5F8 !important;
+}
+
+.spinner-border {
+    color: #151C52;
+}
+
+.color-white {
+    color: #dfe2e6;
+}
+
+.respJson {
+    height: 441px;
+    background: #151C52;
+    overflow: auto;
+}
+
 .w50 {
     width: 50%;
 }

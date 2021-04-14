@@ -4,6 +4,8 @@ import { UserComponent } from './user.component';
 import { UserRoutingModule } from './user-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { GetAllComponent } from './get-all/get-all.component';
+import { FormsModule } from '@angular/forms';
+import { GetModule } from './get/get.module';
 
 
 
@@ -15,7 +17,9 @@ import { GetAllComponent } from './get-all/get-all.component';
   imports: [
     CommonModule,
     UserRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    GetModule
   ]
 })
 export class UserModule { }

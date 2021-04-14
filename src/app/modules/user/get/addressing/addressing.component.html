@@ -1,1 +1,20 @@
-<p>addressing works!</p>
+<div class="p-5">
+    <app-search
+        [user]="user"
+        get="direccionamiento"
+        (onEnter)="search( $event )"
+    ></app-search>
+    <div class="row mt-5" *ngIf="loading && searchAddressing">
+        <div class="col-md-12">
+            <app-loading></app-loading>
+        </div>
+    </div>
+    <div class="row mt-5" *ngIf="!loading">
+        <div class="col-md-3">
+            <app-content
+                [data]="addressing"
+                name="Direccionamiento"
+            ></app-content>
+        </div>
+    </div>
+</div>

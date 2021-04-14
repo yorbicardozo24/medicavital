@@ -1,0 +1,17 @@
+<div class="row mt-5">
+    <div class="col-md-12">
+        <h1>Bienvenido, {{ user }}</h1>
+        <p>Obtener {{ get }}</p>
+    </div>
+    <div class="col-md-3">
+        <form (ngSubmit)="search()" autocomplete="off">
+            <input
+                type="text"
+                name="termino"
+                class="form-control"
+                [(ngModel)]="termino"
+                placeholder="No. Prescripción..."
+            />
+        </form>
+    </div>
+</div>

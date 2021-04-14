@@ -40,7 +40,7 @@ export class AuthService {
             createdToken: res.createdToken,
             userId: res.userId,
             userName: res.userName,
-            userEmail: res.userEmail
+            userEmail: res.userEmail,
           };
 
           localStorage.setItem('user', JSON.stringify(user));

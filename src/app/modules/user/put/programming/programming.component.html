@@ -1,1 +1,117 @@
-<p>programming works!</p>
+<div class="p-5">
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Bienvenido, {{ user }}</h1>
+                    <p>Put Programación</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12 mb-4">
+                            <form autocomplete="off">
+                                <p-dropdown
+                                    [options]="options"
+                                    name="id"
+                                    [(ngModel)]="id"
+                                    [filter]="true"
+                                    filterBy="ID"
+                                    placeholder="ID"
+                                    [editable]="true"
+                                    (onChange)="search( $event )"
+                                >
+                                </p-dropdown>
+                            </form>
+                        </div>
+                        <div class="col-md-12 mb-4">
+                            <label class="mb-0" for="fec">Fecha maxima entrega</label>
+                            <input
+                                type="text"
+                                name="fec"
+                                id="fec"
+                                class="form-control"
+                                [(ngModel)]="fec"
+                            />
+                        </div>
+                        <div class="col-md-12 mb-4">
+                            <label class="mb-0" for="tipoId">Tipo id sede prov</label>
+                            <input
+                                type="text"
+                                name="tipoId"
+                                id="tipoId"
+                                class="form-control"
+                                [(ngModel)]="tipoId"
+                                disabled
+                            />
+                        </div>
+                        <div class="col-md-12 mb-4">
+                            <label class="mb-0" for="noIdSede">No. ID sede prov</label>
+                            <input
+                                type="text"
+                                name="noIdSede"
+                                id="noIdSede"
+                                class="form-control"
+                                [(ngModel)]="noIdSede"
+                                disabled
+                            />
+                        </div>
+                        <div class="col-md-12 mb-4">
+                            <label class="mb-0" for="codSede">Código sede prov</label>
+                            <input
+                                type="text"
+                                name="codSede"
+                                id="codSede"
+                                class="form-control"
+                                [(ngModel)]="codSede"
+                                disabled
+                            />
+                        </div>
+                        <div class="col-md-12 mb-4">
+                            <label class="mb-0" for="codSerTec">Cod SER TEC a entregar</label>
+                            <input
+                                type="text"
+                                name="codSerTec"
+                                id="codSerTec"
+                                class="form-control"
+                                [(ngModel)]="codSerTec"
+                            />
+                        </div>
+                        <div class="col-md-12 mb-5">
+                            <label class="mb-0" for="cantidad">Cantidad total a entregar</label>
+                            <input
+                                type="text"
+                                name="cantidad"
+                                id="cantidad"
+                                class="form-control"
+                                [(ngModel)]="cantidad"
+                            />
+                        </div>
+                        <div class="col-md-12">
+                            <button
+                                (click)="accept()"
+                                class="btn btn-primary btn-block"
+                            >
+                                Aceptar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row mt-5" *ngIf="loading && putProgramming">
+                <div class="col-md-12">
+                    <app-loading></app-loading>
+                </div>
+            </div>
+            <div class="row mt-5" *ngIf="!loading">
+                <div class="col-md-12">
+                    <app-content
+                        [data]="response"
+                        name="Respuesta:"
+                    ></app-content>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

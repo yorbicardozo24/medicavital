@@ -83,3 +83,7 @@ body {
     padding-right: .9rem;
     padding-left: .9rem;
 }
+
+.p-dropdown {
+    width: 100%;
+}

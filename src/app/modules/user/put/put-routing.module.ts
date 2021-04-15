@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BillingComponent } from '../get/billing/billing.component';
-import { DeliveryReportComponent } from '../get/delivery-report/delivery-report.component';
-import { DeliveryComponent } from '../get/delivery/delivery.component';
-import { ProgrammingComponent } from '../get/programming/programming.component';
+import { BillingComponent } from '../put/billing/billing.component';
+import { DeliveryReportComponent } from '../put/delivery-report/delivery-report.component';
+import { DeliveryComponent } from '../put/delivery/delivery.component';
+import { ProgrammingComponent } from '../put/programming/programming.component';
 
 
 const routes: Routes = [

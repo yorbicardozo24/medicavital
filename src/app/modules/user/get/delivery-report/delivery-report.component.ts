@@ -35,6 +35,7 @@ export class DeliveryReportComponent implements OnInit, OnDestroy {
       this.getService.getDeliveryReport(data).subscribe((res) => {
         this.deliveryReport = res.data;
         this.setState();
+        localStorage.setItem('deliveryReport', JSON.stringify(this.deliveryReport));
       }, () => this.setState() )
     );
 

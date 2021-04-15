@@ -5,6 +5,9 @@ import { DeliveryComponent } from './delivery/delivery.component';
 import { DeliveryReportComponent } from './delivery-report/delivery-report.component';
 import { BillingComponent } from './billing/billing.component';
 import { PutRoutingModule } from './put-routing.module';
+import { FormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
+import { GetModule } from '../get/get.module';
 
 
 
@@ -17,7 +20,10 @@ import { PutRoutingModule } from './put-routing.module';
   ],
   imports: [
     CommonModule,
-    PutRoutingModule
+    PutRoutingModule,
+    DropdownModule,
+    GetModule,
+    FormsModule
   ]
 })
 export class PutModule { }

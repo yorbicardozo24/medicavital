@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { GetAllComponent } from './get-all/get-all.component';
 import { FormsModule } from '@angular/forms';
 import { GetModule } from './get/get.module';
+import { PutModule } from './put/put.module';
 
 
 
@@ -19,7 +20,8 @@ import { GetModule } from './get/get.module';
     UserRoutingModule,
     SharedModule,
     FormsModule,
-    GetModule
+    GetModule,
+    PutModule
   ]
 })
 export class UserModule { }

@@ -35,6 +35,7 @@ export class AddressingComponent implements OnInit, OnDestroy {
       this.getService.getAddressing(data).subscribe((res) => {
         this.addressing = res.data;
         this.setState();
+        localStorage.setItem('addressing', JSON.stringify(this.addressing));
       }, () => this.setState() )
     );
 

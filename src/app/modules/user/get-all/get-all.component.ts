@@ -47,6 +47,10 @@ export class GetAllComponent implements OnInit {
       this.delivery = delivery.data;
       this.deliveryReport = deliveryReport.data;
       this.billing = billing.data;
+      localStorage.setItem('delivery', JSON.stringify(this.delivery));
+      localStorage.setItem('deliveryReport', JSON.stringify(this.deliveryReport));
+      localStorage.setItem('billing', JSON.stringify(this.billing));
+      localStorage.setItem('addressing', JSON.stringify(this.programming));
     }, () => {
       this.setState();
     });

@@ -35,6 +35,7 @@ export class BillingComponent implements OnInit, OnDestroy {
       this.getService.getBilling(data).subscribe((res) => {
         this.billing = res.data;
         this.setState();
+        localStorage.setItem('billing', JSON.stringify(this.billing));
       }, () => this.setState() )
     );
 

@@ -1,0 +1,25 @@
+<div class="row mt-5">
+    <div class="col-md-12">
+        <h1>Bienvenido, {{ user }}</h1>
+        <p>Anular {{ anularTitle }}</p>
+    </div>
+    <div class="col-md-3">
+        <p-dropdown
+            [options]="options"
+            name="id"
+            [(ngModel)]="id"
+            [filter]="true"
+            filterBy="ID"
+            placeholder="ID"
+            [editable]="true"
+        >
+        </p-dropdown>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-md-3">
+        <button class="btn btn-block btn-primary" (click)="anular()">
+            Aceptar
+        </button>
+    </div>
+</div>

@@ -1,1 +1,20 @@
-<p>delivery works!</p>
+<div class="p-5">
+    <app-anular-search
+        anularTitle="entrega"
+        from="delivery"
+        (onEnter)="anular( $event )"
+    ></app-anular-search>
+    <div class="row mt-5" *ngIf="loading && cancelDelivery">
+        <div class="col-md-12">
+            <app-loading></app-loading>
+        </div>
+    </div>
+    <div class="row mt-5" *ngIf="!loading">
+        <div class="col-md-3">
+            <app-content
+                [data]="delivery"
+                name="Programación"
+            ></app-content>
+        </div>
+    </div>
+</div>

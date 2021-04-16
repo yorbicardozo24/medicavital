@@ -1,1 +1,20 @@
-<p>programming works!</p>
+<div class="p-5">
+    <app-anular-search
+        anularTitle="programación"
+        from="addressing"
+        (onEnter)="anular( $event )"
+    ></app-anular-search>
+    <div class="row mt-5" *ngIf="loading && cancelProgramming">
+        <div class="col-md-12">
+            <app-loading></app-loading>
+        </div>
+    </div>
+    <div class="row mt-5" *ngIf="!loading">
+        <div class="col-md-3">
+            <app-content
+                [data]="programming"
+                name="Programación"
+            ></app-content>
+        </div>
+    </div>
+</div>

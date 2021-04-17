@@ -7,13 +7,15 @@ import { GetAllComponent } from './get-all/get-all.component';
 import { FormsModule } from '@angular/forms';
 import { GetModule } from './get/get.module';
 import { PutModule } from './put/put.module';
+import { PrintComponent } from './print/print.component';
 
 
 
 @NgModule({
   declarations: [
     UserComponent,
-    GetAllComponent
+    GetAllComponent,
+    PrintComponent
   ],
   imports: [
     CommonModule,

@@ -14,7 +14,7 @@
             />
         </form>
     </div>
-    <div class="col-md-3 d-flex align-items-center" *ngIf="all">
+    <div class="col-md-2 d-flex align-items-center" *ngIf="all">
         <div class="custom-control custom-switch">
             <input
                 type="checkbox"
@@ -25,5 +25,15 @@
             />
             <label class="custom-control-label" for="hideCanceled">Ocultar anuladas</label>
         </div>
+    </div>
+    <div class="col-md-3 d-flex align-items-center" *ngIf="all">
+        <input
+            type="text"
+            name="termino"
+            class="form-control mr-3"
+            [(ngModel)]="id"
+            placeholder="ID"
+        />
+        <button (click)="print()" class="btn btn-primary">Imprimir</button>
     </div>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GetService } from '../services/get.service';
 import { forkJoin } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-get-all',
@@ -24,7 +25,8 @@ export class GetAllComponent implements OnInit {
   searchAll: boolean = false;
 
   constructor(
-    private getService: GetService
+    private getService: GetService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -114,6 +116,10 @@ export class GetAllComponent implements OnInit {
     this.delivery = this.deliveryData;
     this.deliveryReport = this.deliveryReportData;
     this.billing = this.billingData;
+  }
+
+  print( $event: any) {
+    this.router.navigate([`user/print/${ $event }`]);
   }
 
 }

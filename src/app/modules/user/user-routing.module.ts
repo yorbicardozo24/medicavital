@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { GetAllComponent } from './get-all/get-all.component';
+import { PrintComponent } from './print/print.component';
 import { UserComponent } from './user.component';
 
 const routes: Routes = [
@@ -30,7 +31,11 @@ const routes: Routes = [
                 loadChildren: () => import('./cancel/cancel.module').then((m) => m.CancelModule),
             }
         ]
-    }
+    },
+    {
+        path: 'print/:id',
+        component: PrintComponent
+    },
 ]
 
 @NgModule({

@@ -119,7 +119,14 @@ export class GetAllComponent implements OnInit {
   }
 
   print( $event: any) {
-    this.router.navigate([`user/print/${ $event }`]);
+    this.router.navigate([`/user/print/${ $event }`]);
+  }
+
+  noDelivery( $event: any ) {
+    this.programming = this.programmingData.filter((item: any) => item.NoEntrega == $event );
+    this.delivery = this.deliveryData.filter((item: any) => item.NoEntrega == $event );
+    this.deliveryReport = this.deliveryReportData.filter((item: any) => item.NoEntrega == $event );
+    this.billing = this.billingData.filter((item: any) => item.NoEntrega == $event );
   }
 
 }

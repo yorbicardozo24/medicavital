@@ -14,7 +14,6 @@ export class PrintComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const data: any = [];
     const id = this.route.snapshot.params['id'];
 
     const programming = JSON.parse(localStorage.getItem('programming')!);
@@ -26,6 +25,11 @@ export class PrintComponent implements OnInit {
       const billingData = billing.filter((item: any) => item.ID == id);
       if(billingData.length > 0) {
         this.data = billingData;
+        if(this.data.length > 0) {
+          setTimeout(() => {
+            window.print();
+          }, 2000)
+        }
       } else {
         const programmingData = programming.filter((item: any) => item.ID == id);
         if(programmingData.length > 0) {
@@ -41,7 +45,9 @@ export class PrintComponent implements OnInit {
         }
 
         if (this.data.length > 0) {
-          window.print();
+          setTimeout(() => {
+            window.print();
+          }, 2000)
         } else {
           alert('Id no encontrado');
         }

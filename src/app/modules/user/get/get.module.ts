@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { SearchComponent } from './search/search.component';
 import { LoadingComponent } from './loading/loading.component';
 import { ContentComponent } from './content/content.component';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 
@@ -27,6 +28,7 @@ import { ContentComponent } from './content/content.component';
   imports: [
     CommonModule,
     GetRoutingModule,
+    DropdownModule,
     FormsModule
   ],
   exports: [

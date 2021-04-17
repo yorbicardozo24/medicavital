@@ -6,6 +6,8 @@
         (onHide)="toggleCanceled( $event )"
         (onPrint)="print( $event )"
         (onEnter)="search( $event )"
+        (onDelivery)="noDelivery( $event )"
+        (onClear)="showCanceled()"
     ></app-search>
     <div class="row mt-5" *ngIf="loading && searchAll">
         <div class="col-md-12">

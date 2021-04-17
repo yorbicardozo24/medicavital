@@ -21,6 +21,9 @@ export class ProgrammingComponent implements OnInit, OnDestroy {
   ngOnInit(): void { }
 
   anular( id: any ) {
+    if(typeof(id) === 'object') {
+      id = id.id;
+    }
     this.cancelProgramming = true;
     this.loading = true;
     const data = {

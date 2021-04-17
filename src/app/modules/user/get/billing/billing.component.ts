@@ -21,6 +21,11 @@ export class BillingComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user')!).userName;
+    const billing = JSON.parse(localStorage.getItem('billing')!);
+    if (billing != null) {
+      this.loading = false;
+      this.billing = billing;
+    }
   }
 
   search( termino: any ) {

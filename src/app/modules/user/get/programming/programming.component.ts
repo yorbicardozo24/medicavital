@@ -21,6 +21,11 @@ export class ProgrammingComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user')!).userName;
+    const programming = JSON.parse(localStorage.getItem('programming')!);
+    if (programming != null) {
+      this.loading = false;
+      this.programming = programming;
+    }
   }
 
   search( termino: any ) {
@@ -35,6 +40,7 @@ export class ProgrammingComponent implements OnInit, OnDestroy {
       this.getService.getProgramming(data).subscribe((res) => {
         this.programming = res.data;
         this.setState();
+        localStorage.setItem('programming', JSON.stringify(this.programming));
       }, () => this.setState() )
     );
 

@@ -12,7 +12,7 @@ export class BillingComponent implements OnInit, OnDestroy {
   private subscription: Subscription[] = [];
   user: string = '';
 
-  ID: string = '';
+  ID: any = '';
   NoPrescripcion: string = '';
   TipoTec: string = '';
   ConTec: string = '';
@@ -47,13 +47,13 @@ export class BillingComponent implements OnInit, OnDestroy {
     this.user = JSON.parse(localStorage.getItem('user')!).userName;
     this.suggestions = JSON.parse(localStorage.getItem('billing')!);
     if (this.suggestions != null) {
-      this.options = this.suggestions.map((item) => item.ID );
+      this.options = this.suggestions.map((item) => ({id: item.ID}) );
     }
   }
 
   search( event: any ) {
     if(this.suggestions != null) {
-      const resp = this.suggestions.find((a) => a.ID == event.value);
+      const resp = this.suggestions.find((a) => a.ID == event.value.id);
       if (resp != null || resp != undefined) {
         this.NoPrescripcion = resp.NoPrescripcion;
         this.TipoTec = resp.TipoTec;
@@ -103,6 +103,10 @@ export class BillingComponent implements OnInit, OnDestroy {
       this.CuotaModer != '' &&
       this.Copago != ''
     ) {
+
+      if(typeof(this.ID) === 'object') {
+        this.ID = this.ID.id;
+      }
 
       const data = {
         ID: this.ID,

@@ -21,6 +21,9 @@ export class BillingComponent implements OnInit, OnDestroy {
   ngOnInit(): void { }
 
   anular( id: any ) {
+    if(typeof(id) === 'object') {
+      id = id.id;
+    }
     this.cancelBilling = true;
     this.loading = true;
     const data = {

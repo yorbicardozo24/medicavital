@@ -21,6 +21,11 @@ export class AddressingComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user')!).userName;
+    const addressing = JSON.parse(localStorage.getItem('addressing')!);
+    if (addressing != null) {
+      this.loading = false;
+      this.addressing = addressing;
+    }
   }
 
   search( termino: any ) {

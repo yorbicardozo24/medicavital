@@ -21,6 +21,9 @@ export class DeliveryReportComponent implements OnInit, OnDestroy {
   ngOnInit(): void { }
 
   anular( id: any ) {
+    if(typeof(id) === 'object') {
+      id = id.id;
+    }
     this.cancelDeliveryReport = true;
     this.loading = true;
     const data = {

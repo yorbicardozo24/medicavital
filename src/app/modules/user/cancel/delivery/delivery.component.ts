@@ -21,6 +21,9 @@ export class DeliveryComponent implements OnInit, OnDestroy {
   ngOnInit(): void { }
 
   anular( id: any ) {
+    if(typeof(id) === 'object') {
+      id = id.id;
+    }
     this.cancelDelivery = true;
     this.loading = true;
     const data = {

@@ -29,26 +29,26 @@ export class GetAllComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user')!).userName;
-    const programming = JSON.parse(localStorage.getItem('addressing')!);
-    if (programming.length > 0) {
+    const programming = JSON.parse(localStorage.getItem('programming')!);
+    if (programming != null) {
       this.loading = false;
       this.programming = programming;
       this.programmingData = programming;
     }
     const delivery = JSON.parse(localStorage.getItem('delivery')!);
-    if (delivery.length > 0) {
+    if (delivery != null) {
       this.loading = false;
       this.delivery = delivery;
       this.deliveryData = delivery;
     }
     const deliveryReport = JSON.parse(localStorage.getItem('deliveryReport')!);
-    if (deliveryReport.length > 0) {
+    if (deliveryReport != null) {
       this.loading = false;
       this.deliveryReport = deliveryReport;
       this.deliveryReportData = delivery;
     }
     const billing = JSON.parse(localStorage.getItem('billing')!);
-    if (billing.length > 0) {
+    if (billing != null) {
       this.loading = false;
       this.billing = billing;
       this.billingData = billing;
@@ -82,7 +82,7 @@ export class GetAllComponent implements OnInit {
       localStorage.setItem('delivery', JSON.stringify(this.delivery));
       localStorage.setItem('deliveryReport', JSON.stringify(this.deliveryReport));
       localStorage.setItem('billing', JSON.stringify(this.billing));
-      localStorage.setItem('addressing', JSON.stringify(this.programming));
+      localStorage.setItem('programming', JSON.stringify(this.programming));
     }, () => {
       this.setState();
     });

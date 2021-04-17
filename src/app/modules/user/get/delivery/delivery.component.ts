@@ -21,6 +21,11 @@ export class DeliveryComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user')!).userName;
+    const delivery = JSON.parse(localStorage.getItem('delivery')!);
+    if (delivery != null) {
+      this.loading = false;
+      this.delivery = delivery;
+    }
   }
 
   search( termino: any ) {

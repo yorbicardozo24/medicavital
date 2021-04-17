@@ -10,7 +10,7 @@ export class ProgrammingComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription[] = [];
   user: string = '';
-  id: string = '';
+  id: any = '';
   fec: string = '';
   tipoId: string = 'NI';
   noIdSede: string = '900843971';
@@ -33,13 +33,13 @@ export class ProgrammingComponent implements OnInit, OnDestroy {
     this.user = JSON.parse(localStorage.getItem('user')!).userName;
     this.suggestions = JSON.parse(localStorage.getItem('addressing')!);
     if (this.suggestions != null) {
-      this.options = this.suggestions.map((item) => item.ID );
+      this.options = this.suggestions.map((item) => ({id: item.ID}) );
     }
   }
 
   search( event: any ) {
     if(this.suggestions != null) {
-      const resp = this.suggestions.find((a) => a.ID == event.value);
+      const resp = this.suggestions.find((a) => a.ID == event.value.id);
       if (resp != null || resp != undefined) {
         this.fec = resp.FecMaxEnt;
         this.codSerTec = resp.CodSerTecAEntregar;
@@ -63,6 +63,10 @@ export class ProgrammingComponent implements OnInit, OnDestroy {
       this.codSede != '' &&
       this.cantidad != ''
     ) {
+
+      if(typeof(this.id) === 'object') {
+        this.id = this.id.id;
+      }
 
       const data = {
         id: this.id,

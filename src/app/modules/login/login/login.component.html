@@ -11,7 +11,7 @@
                     <h2 class="mb-5 text-center">Bienvenido</h2>
                     <form [formGroup]="loginForm" (ngSubmit)="onLogin()" autocomplete="off">
                         <div class="mb-5 flex search-form search-form--login">
-                            <label for="email" class="material-icons mr-3 ml-3 text-muted">person</label>
+                            <label for="email" class="material-icons mr-3 ml-3 mb-0 text-muted">person</label>
                             <input
                                 type="text"
                                 formControlName="email"
@@ -21,7 +21,7 @@
                             />
                         </div>
                         <div class="mb-5 flex search-form search-form--login">
-                            <label for="password" class="material-icons mr-3 ml-3 text-muted">lock</label>
+                            <label for="password" class="material-icons mr-3 ml-3 mb-0 text-muted">lock</label>
                             <input
                                 type="password"
                                 formControlName="password"
@@ -37,7 +37,14 @@
                             <div class="col-md-12">
                                 <div class="text-center fw-5">
                                     <span>Olvidé mi </span>
-                                    <a routerLink="/forget-password" class="loginLink">contraseña</a>
+                                    <a routerLink="forget-password" class="loginLink">contraseña</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="text-center fw-5">
+                                    <a routerLink="register" class="loginLink">Crear cuenta</a>
                                 </div>
                             </div>
                         </div>

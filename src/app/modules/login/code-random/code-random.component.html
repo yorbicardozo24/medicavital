@@ -1,1 +1,67 @@
-<p>code-random works!</p>
+<div *ngIf="!sendCode">
+    <h2 class="mb-5 text-center">Enviar código</h2>
+    <div class="mb-5 flex search-form search-form--login">
+        <label for="codigo" class="material-icons mr-3 ml-3 mb-0 text-muted">tag</label>
+        <input
+            type="number"
+            [(ngModel)]="codigo"
+            class="form-control"
+            placeholder="Código"
+            id="codigo"
+        />
+    </div>
+    <div class="d-grid gap-2 mb-5">
+        <button
+            type="submit"
+            (click)="sendCode()"
+            class="btn btn-primary btn-block rounded-pill p-2"
+        >ENVIAR</button>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center fw-5">
+                <span>Ya tengo una cuenta </span>
+                <a routerLink="/login" class="loginLink">ingresar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="sendCode">
+    <h2 class="mb-5 text-center">Cambiar contraseña</h2>
+    <div class="mb-5 flex search-form search-form--login">
+        <label for="password" class="material-icons mr-3 ml-3 mb-0 text-muted">vpn_key</label>
+        <input
+            type="text"
+            [(ngModel)]="password"
+            class="form-control"
+            placeholder="Password"
+            id="password"
+        />
+    </div>
+    <div class="mb-5 flex search-form search-form--login">
+        <label for="repeatPassword" class="material-icons mr-3 ml-3 mb-0 text-muted">vpn_key</label>
+        <input
+            type="text"
+            [(ngModel)]="repeatPassword"
+            class="form-control"
+            placeholder="Repetir password"
+            id="repeatPassword"
+        />
+    </div>
+    <div class="d-grid gap-2 mb-5">
+        <button
+            type="submit"
+            (click)="sendCode()"
+            class="btn btn-primary btn-block rounded-pill p-2"
+        >ENVIAR</button>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center fw-5">
+                <span>Ya tengo una cuenta </span>
+                <a routerLink="/login" class="loginLink">ingresar</a>
+            </div>
+        </div>
+    </div>
+</div>

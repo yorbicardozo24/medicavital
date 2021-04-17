@@ -11,6 +11,10 @@ export class GetAllComponent implements OnInit {
 
   user: string = '';
 
+  programmingData: [] = [];
+  deliveryData: [] = [];
+  deliveryReportData: [] = [];
+  billingData: [] = [];
   programming: [] = [];
   delivery: [] = [];
   deliveryReport: [] = [];
@@ -43,10 +47,14 @@ export class GetAllComponent implements OnInit {
     })
     .subscribe(({programming, delivery, deliveryReport, billing}) => {
       this.setState();
+      this.programmingData = programming.data;
       this.programming = programming.data;
+      this.deliveryData = delivery.data;
       this.delivery = delivery.data;
+      this.deliveryReportData = delivery.data;
       this.deliveryReport = deliveryReport.data;
       this.billing = billing.data;
+      this.billingData = billing.data;
       localStorage.setItem('delivery', JSON.stringify(this.delivery));
       localStorage.setItem('deliveryReport', JSON.stringify(this.deliveryReport));
       localStorage.setItem('billing', JSON.stringify(this.billing));
@@ -60,6 +68,22 @@ export class GetAllComponent implements OnInit {
   setState() {
     this.loading = false;
     this.searchAll = false;
+  }
+
+  toggleCanceled(hide: boolean) {
+    if(hide) {
+      this.hideCanceled();
+    } else {
+      this.showCanceled();
+    }
+  }
+
+  hideCanceled() {
+    // this.programming = this.programmingData.filter((item) => item.FecAnulacion != null);
+  }
+
+  showCanceled() {
+    this.programming = this.programmingData;
   }
 
 }

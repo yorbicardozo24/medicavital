@@ -2,6 +2,8 @@
     <app-search
         [user]="user"
         get="todos los gets"
+        [all]="true"
+        (onHide)="toggleCanceled( $event )"
         (onEnter)="search( $event )"
     ></app-search>
     <div class="row mt-5" *ngIf="loading && searchAll">

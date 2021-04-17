@@ -1,1 +1,84 @@
-<p>register works!</p>
+<div class="app-login">
+    <div class="card br-40 w50">
+        <div class="p-5">
+            <div class="row align-items-center mt-4 mb-4">
+                <div class="col-md-6">
+                    <div class="containerIcon">
+                        <div class="iconLogin"></div>
+                    </div>
+                </div>
+                <div class="col-md-6" *ngIf="!codeSent">
+                    <h2 class="mb-5 text-center">Crear cuenta</h2>
+                    <form [formGroup]="registerForm" (ngSubmit)="onRegister()" autocomplete="off">
+                        <div class="mb-5 flex search-form search-form--login">
+                            <label for="name" class="material-icons mr-3 ml-3 mb-0 text-muted">person</label>
+                            <input
+                                type="text"
+                                formControlName="name"
+                                class="form-control"
+                                placeholder="Nombre"
+                                id="name"
+                            />
+                        </div>
+                        <div class="mb-5 flex search-form search-form--login">
+                            <label for="email" class="material-icons mr-3 ml-3 mb-0 text-muted">alternate_email</label>
+                            <input
+                                type="text"
+                                formControlName="email"
+                                class="form-control"
+                                placeholder="Email"
+                                id="email"
+                            />
+                        </div>
+                        <div class="mb-5 flex search-form search-form--login">
+                            <label for="password" class="material-icons mr-3 ml-3 mb-0 text-muted">lock</label>
+                            <input
+                                type="password"
+                                formControlName="password"
+                                class="form-control"
+                                placeholder="Password"
+                                id="password"
+                            />
+                        </div>
+                        <div class="d-grid gap-2 mb-5">
+                            <button type="submit" class="btn btn-primary btn-block rounded-pill p-2">CREAR</button>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="text-center fw-5">
+                                    <span>Ya tengo una cuenta </span>
+                                    <a routerLink="/login" class="loginLink">ingresar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6" *ngIf="codeSent">
+                    <h2 class="mb-5 text-center">Activar cuenta</h2>
+                    <div class="mb-5 flex search-form search-form--login">
+                        <label for="code" class="material-icons mr-3 ml-3 mb-0 text-muted">tag</label>
+                        <input
+                            type="text"
+                            [(ngModel)]="code"
+                            class="form-control"
+                            placeholder="Código"
+                            id="code"
+                        />
+                    </div>
+                    <div class="d-grid gap-2 mb-5">
+                        <button (click)="activar()" type="submit" class="btn btn-primary btn-block rounded-pill p-2">ACTIVAR</button>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="text-center fw-5">
+                                <span>Ya tengo una cuenta </span>
+                                <a routerLink="/login" class="loginLink">ingresar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

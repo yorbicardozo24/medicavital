@@ -14,4 +14,16 @@
             />
         </form>
     </div>
+    <div class="col-md-3 d-flex align-items-center" *ngIf="all">
+        <div class="custom-control custom-switch">
+            <input
+                type="checkbox"
+                class="custom-control-input"
+                [(ngModel)]="hide"
+                (change)="toggleCanceled()"
+                id="hideCanceled"
+            />
+            <label class="custom-control-label" for="hideCanceled">Ocultar anuladas</label>
+        </div>
+    </div>
 </div>

@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ContentComponent implements OnInit {
 
-  @Input() data: [] = [];
+  @Input() data: string[] = [];
   @Input() name: string = '';
 
   messageMapping:

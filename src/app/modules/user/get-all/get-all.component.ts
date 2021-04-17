@@ -11,14 +11,14 @@ export class GetAllComponent implements OnInit {
 
   user: string = '';
 
-  programmingData: [] = [];
-  deliveryData: [] = [];
-  deliveryReportData: [] = [];
-  billingData: [] = [];
-  programming: [] = [];
-  delivery: [] = [];
-  deliveryReport: [] = [];
-  billing: [] = [];
+  programmingData: string[] = [];
+  deliveryData: string[] = [];
+  deliveryReportData: string[] = [];
+  billingData: string[] = [];
+  programming: string[] = [];
+  delivery: string[] = [];
+  deliveryReport: string[] = [];
+  billing: string[] = [];
   
   loading: boolean = true;
   searchAll: boolean = false;
@@ -29,6 +29,30 @@ export class GetAllComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user')!).userName;
+    const programming = JSON.parse(localStorage.getItem('addressing')!);
+    if (programming.length > 0) {
+      this.loading = false;
+      this.programming = programming;
+      this.programmingData = programming;
+    }
+    const delivery = JSON.parse(localStorage.getItem('delivery')!);
+    if (delivery.length > 0) {
+      this.loading = false;
+      this.delivery = delivery;
+      this.deliveryData = delivery;
+    }
+    const deliveryReport = JSON.parse(localStorage.getItem('deliveryReport')!);
+    if (deliveryReport.length > 0) {
+      this.loading = false;
+      this.deliveryReport = deliveryReport;
+      this.deliveryReportData = delivery;
+    }
+    const billing = JSON.parse(localStorage.getItem('billing')!);
+    if (billing.length > 0) {
+      this.loading = false;
+      this.billing = billing;
+      this.billingData = billing;
+    }
   }
 
   search(termino: any) {
@@ -79,11 +103,17 @@ export class GetAllComponent implements OnInit {
   }
 
   hideCanceled() {
-    // this.programming = this.programmingData.filter((item) => item.FecAnulacion != null);
+    this.programming = this.programmingData.filter((item: any) => item.FecAnulacion === null );
+    this.delivery = this.deliveryData.filter((item: any) => item.FecAnulacion === null );
+    this.deliveryReport = this.deliveryReportData.filter((item: any) => item.FecAnulacion === null );
+    this.billing = this.billingData.filter((item: any) => item.FecAnulacion === null );
   }
 
   showCanceled() {
     this.programming = this.programmingData;
+    this.delivery = this.deliveryData;
+    this.deliveryReport = this.deliveryReportData;
+    this.billing = this.billingData;
   }
 
 }

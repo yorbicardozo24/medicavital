@@ -31,7 +31,7 @@ export class ProgrammingComponent implements OnInit, OnDestroy {
   
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user')!).userName;
-    this.suggestions = JSON.parse(localStorage.getItem('addressing')!);
+    this.suggestions = JSON.parse(localStorage.getItem('programming')!);
     if (this.suggestions != null) {
       this.options = this.suggestions.map((item) => ({id: item.ID}) );
     }

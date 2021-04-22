@@ -27,80 +27,20 @@ export class SidebarComponent implements OnInit {
         children: []
       },
       {
-        name: 'Get',
+        name: 'Direccionamiento',
         icon: 'find_in_page',
         isCollapsed: true,
+        url: 'get/addressing',
         route: 'get',
-        children: [
-          {
-            name: 'Direccionamiento',
-            url: 'get/addressing'
-          },
-          {
-            name: 'Programación',
-            url: 'get/programming'
-          },
-          {
-            name: 'Entrega',
-            url: 'get/delivery'
-          },
-          {
-            name: 'Reporte Entrega',
-            url: 'get/delivery-report'
-          },
-          {
-            name: 'Facturación',
-            url: 'get/billing'
-          }
-        ]
+        children: []
       },
       {
         name: 'Put',
         icon: 'swap_horiz',
         isCollapsed: true,
+        url: 'put',
         route: 'put',
-        children: [
-          {
-            name: 'Programación',
-            url: 'put/programming'
-          },
-          {
-            name: 'Entrega',
-            url: 'put/delivery'
-          },
-          {
-            name: 'Reporte Entrega',
-            url: 'put/delivery-report'
-          },
-          {
-            name: 'Facturación',
-            url: 'put/billing'
-          }
-        ]
-      },
-      {
-        name: 'Anular',
-        icon: 'block',
-        isCollapsed: true,
-        route: 'cancel',
-        children: [
-          {
-            name: 'Programación',
-            url: 'cancel/programming'
-          },
-          {
-            name: 'Entrega',
-            url: 'cancel/delivery'
-          },
-          {
-            name: 'Reporte Entrega',
-            url: 'cancel/delivery-report'
-          },
-          {
-            name: 'Facturación',
-            url: 'cancel/billing'
-          }
-        ]
+        children: [ ]
       }
     ];
     

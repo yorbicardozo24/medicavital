@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PutService } from '../../services/put.service';
 
@@ -7,6 +7,8 @@ import { PutService } from '../../services/put.service';
   templateUrl: './delivery-report.component.html'
 })
 export class DeliveryReportComponent implements OnInit, OnDestroy {
+
+  @Input() data: any;
 
   private subscription: Subscription[] = [];
   user: string = '';
@@ -52,21 +54,16 @@ export class DeliveryReportComponent implements OnInit, OnDestroy {
   }
 
   accept() {
-    this.putDeliveryReport = true;
-    this.loading = true;
     if (
-      this.ID != '' &&
+      this.data.id != undefined && this.data.id != null &&
       this.EstadoEntrega != '' &&
       this.CausaNoEntrega != '' &&
       this.ValorEntregado != ''
-    ) {
-
-      if(typeof(this.ID) === 'object') {
-        this.ID = this.ID.id;
-      }
-
+      ) {
+      this.putDeliveryReport = true;
+      this.loading = true;
       const data = {
-        ID: this.ID,
+        ID: this.data.id,
         EstadoEntrega: this.EstadoEntrega,
         CausaNoEntrega: this.CausaNoEntrega,
         ValorEntregado: this.ValorEntregado,

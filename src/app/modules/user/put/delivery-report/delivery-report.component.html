@@ -1,89 +1,57 @@
-<div class="p-5">
-    <div class="row mt-5">
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>Bienvenido, {{ user }}</h1>
-                    <p>Put reporte entrega</p>
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-12 mb-4">
-                            <form autocomplete="off">
-                                <p-dropdown
-                                    [options]="options"
-                                    name="id"
-                                    [(ngModel)]="ID"
-                                    [filter]="true"
-                                    optionLabel="id"
-                                    filterBy="id"
-                                    placeholder="ID"
-                                    [editable]="true"
-                                    (onChange)="search( $event )"
-                                >
-                                </p-dropdown>
-                            </form>
-                        </div>
-                        <div class="col-md-12 mb-4">
-                            <label class="mb-0" for="EstadoEntrega">Estado entrega</label>
-                            <input
-                                type="text"
-                                name="EstadoEntrega"
-                                id="EstadoEntrega"
-                                class="form-control"
-                                [(ngModel)]="EstadoEntrega"
-                                disabled
-                            />
-                        </div>
-                        <div class="col-md-12 mb-4">
-                            <label class="mb-0" for="CausaNoEntrega">Causa No Entrega</label>
-                            <input
-                                type="text"
-                                name="CausaNoEntrega"
-                                id="CausaNoEntrega"
-                                class="form-control"
-                                [(ngModel)]="CausaNoEntrega"
-                                disabled
-                            />
-                        </div>
-                        <div class="col-md-12 mb-4">
-                            <label class="mb-0" for="ValorEntregado">Valor entregado</label>
-                            <input
-                                type="text"
-                                name="ValorEntregado"
-                                id="ValorEntregado"
-                                class="form-control"
-                                [(ngModel)]="ValorEntregado"
-                            />
-                        </div>
-                        <div class="col-md-12">
-                            <button
-                                (click)="accept()"
-                                class="btn btn-primary btn-block"
-                            >
-                                Aceptar
-                            </button>
-                        </div>
-                    </div>
-                </div>
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <label class="mb-0" for="EstadoEntrega">Estado entrega</label>
+        <input
+            type="text"
+            name="EstadoEntrega"
+            id="EstadoEntrega"
+            class="form-control"
+            [(ngModel)]="EstadoEntrega"
+            disabled
+        />
+    </div>
+    <div class="col-md-12 mb-4">
+        <label class="mb-0" for="CausaNoEntrega">Causa No Entrega</label>
+        <input
+            type="text"
+            name="CausaNoEntrega"
+            id="CausaNoEntrega"
+            class="form-control"
+            [(ngModel)]="CausaNoEntrega"
+            disabled
+        />
+    </div>
+    <div class="col-md-12 mb-5">
+        <label class="mb-0" for="ValorEntregado">Valor entregado</label>
+        <input
+            type="text"
+            name="ValorEntregado"
+            id="ValorEntregado"
+            class="form-control"
+            [(ngModel)]="ValorEntregado"
+        />
+    </div>
+    <div class="col-md-12">
+        <button
+            (click)="accept()"
+            class="btn btn-primary btn-block"
+        >
+            Aceptar
+        </button>
+    </div>
+    <div class="col-md-12">
+        <div class="row mt-5" *ngIf="loading && putDeliveryReport">
+            <div class="col-md-12">
+                <app-loading></app-loading>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="row mt-5" *ngIf="loading && putDeliveryReport">
-                <div class="col-md-12">
-                    <app-loading></app-loading>
-                </div>
-            </div>
-            <div class="row mt-5" *ngIf="!loading">
-                <div class="col-md-12">
-                    <app-content
-                        [data]="response"
-                        name="Respuesta:"
-                    ></app-content>
-                </div>
+        <div class="row mt-5" *ngIf="!loading">
+            <div class="col-md-12">
+                <app-content
+                    [data]="response"
+                    name="Respuesta:"
+                ></app-content>
             </div>
         </div>
     </div>
 </div>
-
-

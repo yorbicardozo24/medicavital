@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PutService } from '../../services/put.service';
 
@@ -7,6 +7,8 @@ import { PutService } from '../../services/put.service';
   templateUrl: './programming.component.html'
 })
 export class ProgrammingComponent implements OnInit, OnDestroy {
+
+  @Input() data: any;
 
   private subscription: Subscription[] = [];
   user: string = '';
@@ -53,29 +55,27 @@ export class ProgrammingComponent implements OnInit, OnDestroy {
   }
 
   accept() {
-    this.putProgramming = true;
-    this.loading = true;
     if (
-      this.id != '' &&
-      this.fec != '' &&
+      this.data.id != undefined && this.data.id != null &&
+      this.data.fec != undefined && this.data.fec != null &&
       this.tipoId != '' &&
       this.noIdSede != '' &&
       this.codSede != '' &&
-      this.cantidad != ''
+      this.data.codSerTec != undefined && this.data.codSerTec != null &&
+      this.data.cantidad != undefined && this.data.cantidad != null
     ) {
 
-      if(typeof(this.id) === 'object') {
-        this.id = this.id.id;
-      }
+      this.putProgramming = true;
+      this.loading = true;
 
       const data = {
-        id: this.id,
-        fec: this.fec,
+        id: this.data.id,
+        fec: this.data.fec,
         tipoId: this.tipoId,
         noIdSede: this.noIdSede,
         codSede: this.codSede,
-        codSerTec: this.codSerTec,
-        cantidad: this.cantidad,
+        codSerTec: this.data.codSerTec,
+        cantidad: this.data.cantidad,
         token: JSON.parse(localStorage.getItem('user')!).createdToken
       }
 

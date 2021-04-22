@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PutService } from '../../services/put.service';
 
@@ -7,6 +7,8 @@ import { PutService } from '../../services/put.service';
   templateUrl: './delivery.component.html'
 })
 export class DeliveryComponent implements OnInit, OnDestroy {
+
+  @Input() delivery: any;
 
   private subscription: Subscription[] = [];
   ID: any = '';
@@ -61,33 +63,30 @@ export class DeliveryComponent implements OnInit, OnDestroy {
   }
 
   accept() {
-    this.putDelivery = true;
-    this.loading = true;
     if (
-      this.ID != '' &&
-      this.CodSerTecEntregado != '' &&
-      this.CantTotEntregada != '' &&
-      this.EntTotal != '' &&
-      this.CausaNoEntrega != '' &&
+      this.delivery.id != undefined && this.delivery.id != null &&
+      this.delivery.CodSerTecAEntregar != undefined && this.delivery.CodSerTecAEntregar != null &&
+      this.delivery.CantTotAEntregar != undefined && this.delivery.CantTotAEntregar != null &&
+      this.delivery.EntTotal != undefined && this.delivery.EntTotal != null &&
+      this.delivery.CausaNoEntrega != undefined && this.delivery.CausaNoEntrega != null &&
       this.FecEntrega != '' &&
-      this.NoLote != '' &&
-      this.TipoIDRecibe != '' &&
+      this.delivery.NoLote != undefined &&
+      this.delivery.TipoIDRecibe != undefined && this.delivery.TipoIDRecibe != null &&
       this.NoIDRecibe != ''
     ) {
 
-      if(typeof(this.ID) === 'object') {
-        this.ID = this.ID.id;
-      }
+      this.putDelivery = true;
+      this.loading = true;
 
       const data = {
-        ID: this.ID,
-        CodSerTecEntregado: this.CodSerTecEntregado,
-        CantTotEntregada: this.CantTotEntregada,
-        EntTotal: this.EntTotal,
-        CausaNoEntrega: this.CausaNoEntrega,
+        ID: this.delivery.id,
+        CodSerTecEntregado: this.delivery.CodSerTecAEntregar,
+        CantTotEntregada: this.delivery.CantTotAEntregar,
+        EntTotal: this.delivery.EntTotal,
+        CausaNoEntrega: this.delivery.CausaNoEntrega,
         FecEntrega: this.FecEntrega,
-        NoLote: this.NoLote,
-        TipoIDRecibe: this.TipoIDRecibe,
+        NoLote: this.delivery.NoLote,
+        TipoIDRecibe: this.delivery.TipoIDRecibe,
         NoIDRecibe: this.NoIDRecibe,
         token: JSON.parse(localStorage.getItem('user')!).createdToken
       }

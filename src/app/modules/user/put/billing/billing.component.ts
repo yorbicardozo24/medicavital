@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PutService } from '../../services/put.service';
 import { dispensacion } from '../dispensacion';
@@ -8,6 +8,8 @@ import { dispensacion } from '../dispensacion';
   templateUrl: './billing.component.html'
 })
 export class BillingComponent implements OnInit, OnDestroy {
+
+  @Input() data: any;
 
   private subscription: Subscription[] = [];
   user: string = '';
@@ -26,8 +28,8 @@ export class BillingComponent implements OnInit, OnDestroy {
   CantUnMinDis: string = '';
   ValorUnitFacturado: string = '';
   ValorTotFacturado: string = '';
-  CuotaModer: string = '';
-  Copago: string = '';
+  CuotaModer: number = 0;
+  Copago: number = 0;
   
   response: any = '';
 
@@ -83,43 +85,38 @@ export class BillingComponent implements OnInit, OnDestroy {
   }
 
   accept() {
-    this.putBilling = true;
-    this.loading = true;
     if (
-      this.ID != '' &&
-      this.NoPrescripcion != '' &&
-      this.TipoTec != '' &&
-      this.ConTec != '' &&
-      this.TipoIDPaciente != '' &&
-      this.NoIDPaciente != '' &&
-      this.NoEntrega != '' &&
+      this.data.id != undefined && this.data.id != null &&
+      this.data.NoPrescripcion != undefined && this.data.NoPrescripcion != null &&
+      this.data.TipoTec != undefined && this.data.TipoTec != null &&
+      this.data.ConTec != undefined && this.data.ConTec != null &&
+      this.data.TipoIDPaciente != undefined && this.data.TipoIDPaciente != null &&
+      this.data.NoIDPaciente != undefined && this.data.NoIDPaciente != null &&
+      this.data.NoEntrega != undefined && this.data.NoEntrega != null &&
       this.NoFactura != '' &&
-      this.NoIDEPS != '' &&
-      this.CodEPS != '' &&
-      this.CodSerTecAEntregado != '' &&
+      this.data.NoIDEPS != undefined && this.data.NoIDEPS != null &&
+      this.data.CodEPS != undefined && this.data.CodEPS != null &&
+      this.data.CodSerTecAEntregarBilling != undefined && this.data.CodSerTecAEntregarBilling != null &&
       this.CantUnMinDis != '' &&
       this.ValorUnitFacturado != '' &&
-      this.ValorTotFacturado != '' &&
-      this.CuotaModer != '' &&
-      this.Copago != ''
-    ) {
-
-      if(typeof(this.ID) === 'object') {
-        this.ID = this.ID.id;
-      }
+      this.ValorTotFacturado != ''
+      ) {
+      
+      this.putBilling = true;
+      this.loading = true;
 
       const data = {
-        ID: this.ID,
-        NoPrescripcion: this.NoPrescripcion,
-        TipoTec: this.TipoTec,
-        ConTec: this.ConTec,
-        TipoIDPaciente: this.TipoIDPaciente,
-        NoIDPaciente: this.NoIDPaciente,
-        NoEntrega: this.NoEntrega,
+        ID: this.data.id,
+        NoPrescripcion: this.data.NoPrescripcion,
+        TipoTec: this.data.TipoTec,
+        ConTec: this.data.ConTec,
+        TipoIDPaciente: this.data.TipoIDPaciente,
+        NoIDPaciente: this.data.NoIDPaciente,
+        NoEntrega: this.data.NoEntrega,
         NoFactura: this.NoFactura,
-        NoIDEPS: this.NoIDEPS,
-        CodEPS: this.CodEPS,
-        CodSerTecAEntregado: this.CodSerTecAEntregado,
+        NoIDEPS: this.data.NoIDEPS,
+        CodEPS: this.data.CodEPS,
+        CodSerTecAEntregado: this.data.CodSerTecAEntregarBilling,
         CantUnMinDis: this.CantUnMinDis,
         ValorUnitFacturado: this.ValorUnitFacturado,
         ValorTotFacturado: this.ValorTotFacturado,
@@ -128,15 +125,17 @@ export class BillingComponent implements OnInit, OnDestroy {
         token: JSON.parse(localStorage.getItem('user')!).createdToken
       }
 
-      this.subscription.push(
-        this.putService.putBilling(data).subscribe((res) => {
-          this.response = res;
-          this.setState();
-        }, (err) => {
-          this.response = err.error.message;
-          this.setState();
-        })
-      );
+      console.log(data);
+
+      // this.subscription.push(
+      //   this.putService.putBilling(data).subscribe((res) => {
+      //     this.response = res;
+      //     this.setState();
+      //   }, (err) => {
+      //     this.response = err.error.message;
+      //     this.setState();
+      //   })
+      // );
     }
   }
 

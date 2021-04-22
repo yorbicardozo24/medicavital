@@ -1,140 +1,109 @@
-<div class="py-4 px-5">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>Bienvenido, {{ user }}</h1>
-                    <p>Put entrega</p>
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-12 mb-4">
-                            <form autocomplete="off">
-                                <p-dropdown
-                                    [options]="options"
-                                    name="id"
-                                    [(ngModel)]="ID"
-                                    [filter]="true"
-                                    optionLabel="id"
-                                    filterBy="id"
-                                    placeholder="ID"
-                                    [editable]="true"
-                                    (onChange)="search( $event )"
-                                >
-                                </p-dropdown>
-                            </form>
-                        </div>
-                        <div class="col-md-12 mb-4">
-                            <label class="mb-0" for="CodSerTecEntregado">Cod Ser Tec Entregado</label>
-                            <input
-                                type="text"
-                                name="CodSerTecEntregado"
-                                id="CodSerTecEntregado"
-                                class="form-control"
-                                [(ngModel)]="CodSerTecEntregado"
-                            />
-                        </div>
-                        <div class="col-md-12 mb-4">
-                            <label class="mb-0" for="CantTotEntregada">Cant Tot Entregada</label>
-                            <input
-                                type="text"
-                                name="CantTotEntregada"
-                                id="CantTotEntregada"
-                                class="form-control"
-                                [(ngModel)]="CantTotEntregada"
-                            />
-                        </div>
-                        <div class="col-md-12 mb-4">
-                            <label class="mb-0" for="EntTotal">Ent Total</label>
-                            <input
-                                type="text"
-                                name="EntTotal"
-                                id="EntTotal"
-                                class="form-control"
-                                [(ngModel)]="EntTotal"
-                                disabled
-                            />
-                        </div>
-                        <div class="col-md-12 mb-4">
-                            <label class="mb-0" for="CausaNoEntrega">Causa No Entrega</label>
-                            <input
-                                type="text"
-                                name="CausaNoEntrega"
-                                id="CausaNoEntrega"
-                                class="form-control"
-                                [(ngModel)]="CausaNoEntrega"
-                                disabled
-                            />
-                        </div>
-                        <div class="col-md-12 mb-4">
-                            <label class="mb-0" for="FecEntrega">Fecha entrega</label>
-                            <input
-                                type="text"
-                                name="FecEntrega"
-                                id="FecEntrega"
-                                class="form-control"
-                                [(ngModel)]="FecEntrega"
-                            />
-                        </div>
-                        <div class="col-md-12 mb-4">
-                            <label class="mb-0" for="NoLote">No Lote</label>
-                            <input
-                                type="text"
-                                name="NoLote"
-                                id="NoLote"
-                                class="form-control"
-                                [(ngModel)]="NoLote"
-                                disabled
-                            />
-                        </div>
-                        <div class="col-md-12 mb-4">
-                            <label class="mb-0" for="TipoIDRecibe">Tipo ID recibe</label>
-                            <input
-                                type="text"
-                                name="TipoIDRecibe"
-                                id="TipoIDRecibe"
-                                class="form-control"
-                                [(ngModel)]="TipoIDRecibe"
-                                disabled
-                            />
-                        </div>
-                        <div class="col-md-12 mb-5">
-                            <label class="mb-0" for="NoIDRecibe">No ID recibe</label>
-                            <input
-                                type="text"
-                                name="NoIDRecibe"
-                                id="NoIDRecibe"
-                                class="form-control"
-                                [(ngModel)]="NoIDRecibe"
-                            />
-                        </div>
-                        <div class="col-md-12">
-                            <button
-                                (click)="accept()"
-                                class="btn btn-primary btn-block"
-                            >
-                                Aceptar
-                            </button>
-                        </div>
-                    </div>
-                </div>
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <label class="mb-0" for="CodSerTecAEntregar">Cod Ser Tec Entregado</label>
+        <input
+            type="text"
+            name="CodSerTecAEntregar"
+            id="CodSerTecAEntregar"
+            class="form-control"
+            [(ngModel)]="delivery.CodSerTecAEntregar"
+        />
+    </div>
+    <div class="col-md-12 mb-4">
+        <label class="mb-0" for="CantTotAEntregar">Cant Tot Entregada</label>
+        <input
+            type="text"
+            name="CantTotAEntregar"
+            id="CantTotAEntregar"
+            class="form-control"
+            [(ngModel)]="delivery.CantTotAEntregar"
+        />
+    </div>
+    <div class="col-md-12 mb-4">
+        <label class="mb-0" for="EntTotal">Ent Total</label>
+        <input
+            type="text"
+            name="EntTotal"
+            id="EntTotal"
+            class="form-control"
+            [(ngModel)]="delivery.EntTotal"
+            disabled
+        />
+    </div>
+    <div class="col-md-12 mb-4">
+        <label class="mb-0" for="CausaNoEntregaDelivery">Causa No Entrega</label>
+        <input
+            type="text"
+            name="CausaNoEntregaDelivery"
+            id="CausaNoEntregaDelivery"
+            class="form-control"
+            [(ngModel)]="delivery.CausaNoEntrega"
+            disabled
+        />
+    </div>
+    <div class="col-md-12 mb-4">
+        <label class="mb-0" for="FecEntrega">Fecha entrega</label>
+        <input
+            type="text"
+            name="FecEntrega"
+            id="FecEntrega"
+            class="form-control"
+            [(ngModel)]="FecEntrega"
+        />
+    </div>
+    <div class="col-md-12 mb-4">
+        <label class="mb-0" for="NoLote">No Lote</label>
+        <input
+            type="text"
+            name="NoLote"
+            id="NoLote"
+            class="form-control"
+            [(ngModel)]="delivery.NoLote"
+            disabled
+        />
+    </div>
+    <div class="col-md-12 mb-4">
+        <label class="mb-0" for="TipoIDRecibe">Tipo ID recibe</label>
+        <input
+            type="text"
+            name="TipoIDRecibe"
+            id="TipoIDRecibe"
+            class="form-control"
+            [(ngModel)]="delivery.TipoIDRecibe"
+            disabled
+        />
+    </div>
+    <div class="col-md-12 mb-5">
+        <label class="mb-0" for="NoIDRecibe">No ID recibe</label>
+        <input
+            type="text"
+            name="NoIDRecibe"
+            id="NoIDRecibe"
+            class="form-control"
+            [(ngModel)]="NoIDRecibe"
+        />
+    </div>
+    <div class="col-md-12">
+        <button
+            (click)="accept()"
+            class="btn btn-primary btn-block"
+        >
+            Aceptar
+        </button>
+    </div>
+    <div class="col-md-12">
+        <div class="row mt-5" *ngIf="loading && putDelivery">
+            <div class="col-md-12">
+                <app-loading></app-loading>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="row mt-5" *ngIf="loading && putDelivery">
-                <div class="col-md-12">
-                    <app-loading></app-loading>
-                </div>
-            </div>
-            <div class="row mt-5" *ngIf="!loading">
-                <div class="col-md-12">
-                    <app-content
-                        [data]="response"
-                        name="Respuesta:"
-                    ></app-content>
-                </div>
+        <div class="row mt-5" *ngIf="!loading">
+            <div class="col-md-12">
+                <app-content
+                    [data]="response"
+                    name="Respuesta:"
+                ></app-content>
             </div>
         </div>
     </div>
 </div>
-

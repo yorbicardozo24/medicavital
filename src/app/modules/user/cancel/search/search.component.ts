@@ -9,29 +9,11 @@ export class SearchComponent implements OnInit {
   @Input() anularTitle: string = '';
   @Input() from: string = '';
   @Output() onEnter: EventEmitter<string> = new EventEmitter();
-  user: string = '';
   id: string = '';
-
-  suggestions!: any[];
-  options: any[] = [];
 
   constructor() { }
 
-  ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem('user')!).userName;
-    this.suggestions = JSON.parse(localStorage.getItem(this.from)!);
-    if (this.suggestions != null) {
-      if (this.from == 'programming') {
-        this.options = this.suggestions.map((item) => ({id: item.IDProgramacion}) );
-      } else if (this.from == 'delivery') {
-        this.options = this.suggestions.map((item) => ({id: item.IDEntrega}) );
-      } else if (this.from == 'deliveryReport') {
-        this.options = this.suggestions.map((item) => ({id: item.IDReporteEntrega}) );
-      } else if (this.from == 'billing') {
-        this.options = this.suggestions.map((item) => ({id: item.IDFacturacion}) );
-      }
-    }
-  }
+  ngOnInit(): void { }
 
   anular() {
     this.onEnter.emit( this.id );

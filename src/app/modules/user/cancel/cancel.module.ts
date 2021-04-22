@@ -20,6 +20,12 @@ import { SearchComponent } from './search/search.component';
     ProgrammingComponent,
     SearchComponent
   ],
+  exports: [
+    ProgrammingComponent,
+    DeliveryComponent,
+    DeliveryReportComponent,
+    BillingComponent
+  ],
   imports: [
     CommonModule,
     CancelRoutingModule,

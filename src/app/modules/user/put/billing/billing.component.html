@@ -1,220 +1,189 @@
-<div class="py-4 px-5">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>Bienvenido, {{ user }}</h1>
-                    <p>Put entrega</p>
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-12 mb-4">
-                            <form autocomplete="off">
-                                <p-dropdown
-                                    [options]="options"
-                                    name="id"
-                                    [(ngModel)]="ID"
-                                    [filter]="true"
-                                    optionLabel="id"
-                                    filterBy="id"
-                                    placeholder="ID"
-                                    [editable]="true"
-                                    (onChange)="search( $event )"
-                                >
-                                </p-dropdown>
-                            </form>
-                        </div>
-                        <div class="col-md-12 mb-4">
-                            <label class="mb-0" for="NoPrescripcion">No prescripción</label>
-                            <input
-                                type="text"
-                                name="NoPrescripcion"
-                                id="NoPrescripcion"
-                                class="form-control"
-                                [(ngModel)]="NoPrescripcion"
-                            />
-                        </div>
-                        <div class="col-md-12 mb-4">
-                            <label class="mb-0" for="TipoTec">Tipo tec</label>
-                            <input
-                                type="text"
-                                name="TipoTec"
-                                id="TipoTec"
-                                class="form-control"
-                                [(ngModel)]="TipoTec"
-                            />
-                        </div>
-                        <div class="col-md-12 mb-4">
-                            <label class="mb-0" for="ConTec">Con tec</label>
-                            <input
-                                type="text"
-                                name="ConTec"
-                                id="ConTec"
-                                class="form-control"
-                                [(ngModel)]="ConTec"
-                            />
-                        </div>
-                        <div class="col-md-12 mb-4">
-                            <label class="mb-0" for="TipoIDPaciente">Tipo ID Paciente</label>
-                            <input
-                                type="text"
-                                name="TipoIDPaciente"
-                                id="TipoIDPaciente"
-                                class="form-control"
-                                [(ngModel)]="TipoIDPaciente"
-                            />
-                        </div>
-                        <div class="col-md-12 mb-4">
-                            <label class="mb-0" for="NoIDPaciente">No ID Paciente</label>
-                            <input
-                                type="text"
-                                name="NoIDPaciente"
-                                id="NoIDPaciente"
-                                class="form-control"
-                                [(ngModel)]="NoIDPaciente"
-                            />
-                        </div>
-                        <div class="col-md-12 mb-4">
-                            <label class="mb-0" for="NoEntrega">No Entrega</label>
-                            <input
-                                type="text"
-                                name="NoEntrega"
-                                id="NoEntrega"
-                                class="form-control"
-                                [(ngModel)]="NoEntrega"
-                            />
-                        </div>
-                        <div class="col-md-12 mb-4">
-                            <label class="mb-0" for="NoFactura">No Factura</label>
-                            <input
-                                type="text"
-                                name="NoFactura"
-                                id="NoFactura"
-                                class="form-control"
-                                [(ngModel)]="NoFactura"
-                            />
-                        </div>
-                        <div class="col-md-12 mb-5">
-                            <label class="mb-0" for="NoIDEPS">No ID EPS</label>
-                            <input
-                                type="text"
-                                name="NoIDEPS"
-                                id="NoIDEPS"
-                                class="form-control"
-                                [(ngModel)]="NoIDEPS"
-                            />
-                        </div>
-                        <div class="col-md-12 mb-5">
-                            <label class="mb-0" for="CodEPS">Cod EPS</label>
-                            <input
-                                type="text"
-                                name="CodEPS"
-                                id="CodEPS"
-                                class="form-control"
-                                [(ngModel)]="CodEPS"
-                            />
-                        </div>
-                        <div class="col-md-12 mb-5">
-                            <label class="mb-0" for="CodSerTecAEntregado">Cod Ser Tec A Entregar</label>
-                            <input
-                                type="text"
-                                name="CodSerTecAEntregado"
-                                id="CodSerTecAEntregado"
-                                class="form-control"
-                                [(ngModel)]="CodSerTecAEntregado"
-                            />
-                        </div>
-                        <div class="col-md-6 mb-5">
-                            <label class="mb-1" for="CantUnMinDis">Cant Un Min Dis</label>
-                            <input
-                                type="text"
-                                name="CantUnMinDis"
-                                id="CantUnMinDis"
-                                class="form-control"
-                                [(ngModel)]="CantUnMinDis"
-                                disabled
-                            />
-                        </div>
-                        <div class="col-md-6 mb-5">
-                            <label class="mb-0" for="CantUnMinDis">&nbsp;</label>
-                            <p-dropdown
-                                    [options]="dispensacion"
-                                    name="label"
-                                    [(ngModel)]="dis"
-                                    [filter]="true"
-                                    filterBy="label"
-                                    placeholder="Selecciona un tipo"
-                                    (onChange)="changeDis( $event )"
-                                >
-                            </p-dropdown>
-                        </div>
-                        <div class="col-md-12 mb-5">
-                            <label class="mb-0" for="ValorUnitFacturado">Valor Unit Facturado</label>
-                            <input
-                                type="text"
-                                name="ValorUnitFacturado"
-                                id="ValorUnitFacturado"
-                                class="form-control"
-                                [(ngModel)]="ValorUnitFacturado"
-                            />
-                        </div>
-                        <div class="col-md-12 mb-5">
-                            <label class="mb-0" for="ValorTotFacturado">Valor Tot Facturado</label>
-                            <input
-                                type="text"
-                                name="ValorTotFacturado"
-                                id="ValorTotFacturado"
-                                class="form-control"
-                                [(ngModel)]="ValorTotFacturado"
-                            />
-                        </div>
-                        <div class="col-md-12 mb-5">
-                            <label class="mb-0" for="CuotaModer">Cuota Moder</label>
-                            <input
-                                type="text"
-                                name="CuotaModer"
-                                id="CuotaModer"
-                                class="form-control"
-                                [(ngModel)]="CuotaModer"
-                            />
-                        </div>
-                        <div class="col-md-12 mb-5">
-                            <label class="mb-0" for="Copago">Copago</label>
-                            <input
-                                type="text"
-                                name="Copago"
-                                id="Copago"
-                                class="form-control"
-                                [(ngModel)]="Copago"
-                            />
-                        </div>
-                        <div class="col-md-12">
-                            <button
-                                (click)="accept()"
-                                class="btn btn-primary btn-block"
-                            >
-                                Aceptar
-                            </button>
-                        </div>
-                    </div>
-                </div>
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <label class="mb-0" for="NoPrescripcion">No prescripción</label>
+        <input
+            type="text"
+            name="NoPrescripcion"
+            id="NoPrescripcion"
+            class="form-control"
+            [(ngModel)]="data.NoPrescripcion"
+        />
+    </div>
+    <div class="col-md-12 mb-4">
+        <label class="mb-0" for="TipoTec">Tipo tec</label>
+        <input
+            type="text"
+            name="TipoTec"
+            id="TipoTec"
+            class="form-control"
+            [(ngModel)]="data.TipoTec"
+        />
+    </div>
+    <div class="col-md-12 mb-4">
+        <label class="mb-0" for="ConTec">Con tec</label>
+        <input
+            type="text"
+            name="ConTec"
+            id="ConTec"
+            class="form-control"
+            [(ngModel)]="data.ConTec"
+        />
+    </div>
+    <div class="col-md-12 mb-4">
+        <label class="mb-0" for="TipoIDPaciente">Tipo ID Paciente</label>
+        <input
+            type="text"
+            name="TipoIDPaciente"
+            id="TipoIDPaciente"
+            class="form-control"
+            [(ngModel)]="data.TipoIDPaciente"
+        />
+    </div>
+    <div class="col-md-12 mb-4">
+        <label class="mb-0" for="NoIDPaciente">No ID Paciente</label>
+        <input
+            type="text"
+            name="NoIDPaciente"
+            id="NoIDPaciente"
+            class="form-control"
+            [(ngModel)]="data.NoIDPaciente"
+        />
+    </div>
+    <div class="col-md-12 mb-4">
+        <label class="mb-0" for="NoEntrega">No Entrega</label>
+        <input
+            type="text"
+            name="NoEntrega"
+            id="NoEntrega"
+            class="form-control"
+            [(ngModel)]="data.NoEntrega"
+        />
+    </div>
+    <div class="col-md-12 mb-4">
+        <label class="mb-0" for="NoFactura">No Factura</label>
+        <input
+            type="text"
+            name="NoFactura"
+            id="NoFactura"
+            class="form-control"
+            [(ngModel)]="NoFactura"
+        />
+    </div>
+    <div class="col-md-12 mb-5">
+        <label class="mb-0" for="NoIDEPS">No ID EPS</label>
+        <input
+            type="text"
+            name="NoIDEPS"
+            id="NoIDEPS"
+            class="form-control"
+            [(ngModel)]="data.NoIDEPS"
+        />
+    </div>
+    <div class="col-md-12 mb-5">
+        <label class="mb-0" for="CodEPS">Cod EPS</label>
+        <input
+            type="text"
+            name="CodEPS"
+            id="CodEPS"
+            class="form-control"
+            [(ngModel)]="data.CodEPS"
+        />
+    </div>
+    <div class="col-md-12 mb-5">
+        <label class="mb-0" for="CodSerTecAEntregarBilling">Cod Ser Tec A Entregar</label>
+        <input
+            type="text"
+            name="CodSerTecAEntregarBilling"
+            id="CodSerTecAEntregarBilling"
+            class="form-control"
+            [(ngModel)]="data.CodSerTecAEntregarBilling"
+        />
+    </div>
+    <div class="col-md-6 mb-5">
+        <label class="mb-1" for="CantUnMinDis">Cant Un Min Dis</label>
+        <input
+            type="text"
+            name="CantUnMinDis"
+            id="CantUnMinDis"
+            class="form-control"
+            [(ngModel)]="CantUnMinDis"
+            disabled
+        />
+    </div>
+    <div class="col-md-6 mb-5">
+        <label class="mb-0" for="CantUnMinDis">&nbsp;</label>
+        <p-dropdown
+                [options]="dispensacion"
+                name="label"
+                [(ngModel)]="dis"
+                [filter]="true"
+                filterBy="label"
+                placeholder="Selecciona un tipo"
+                (onChange)="changeDis( $event )"
+            >
+        </p-dropdown>
+    </div>
+    <div class="col-md-12 mb-5">
+        <label class="mb-0" for="ValorUnitFacturado">Valor Unit Facturado</label>
+        <input
+            type="text"
+            name="ValorUnitFacturado"
+            id="ValorUnitFacturado"
+            class="form-control"
+            [(ngModel)]="ValorUnitFacturado"
+        />
+    </div>
+    <div class="col-md-12 mb-5">
+        <label class="mb-0" for="ValorTotFacturado">Valor Tot Facturado</label>
+        <input
+            type="text"
+            name="ValorTotFacturado"
+            id="ValorTotFacturado"
+            class="form-control"
+            [(ngModel)]="ValorTotFacturado"
+        />
+    </div>
+    <div class="col-md-12 mb-5">
+        <label class="mb-0" for="CuotaModer">Cuota Moder</label>
+        <input
+            type="text"
+            name="CuotaModer"
+            id="CuotaModer"
+            class="form-control"
+            [(ngModel)]="CuotaModer"
+        />
+    </div>
+    <div class="col-md-12 mb-5">
+        <label class="mb-0" for="Copago">Copago</label>
+        <input
+            type="text"
+            name="Copago"
+            id="Copago"
+            class="form-control"
+            [(ngModel)]="Copago"
+        />
+    </div>
+    <div class="col-md-12">
+        <button
+            (click)="accept()"
+            class="btn btn-primary btn-block"
+        >
+            Aceptar
+        </button>
+    </div>
+    <div class="col-md-12">
+        <div class="row mt-5" *ngIf="loading && putBilling">
+            <div class="col-md-12">
+                <app-loading></app-loading>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="row mt-5" *ngIf="loading && putBilling">
-                <div class="col-md-12">
-                    <app-loading></app-loading>
-                </div>
-            </div>
-            <div class="row mt-5" *ngIf="!loading">
-                <div class="col-md-12">
-                    <app-content
-                        [data]="response"
-                        name="Respuesta:"
-                    ></app-content>
-                </div>
+        <div class="row mt-5" *ngIf="!loading">
+            <div class="col-md-12">
+                <app-content
+                    [data]="response"
+                    name="Respuesta:"
+                ></app-content>
             </div>
         </div>
     </div>
 </div>
-

@@ -69,9 +69,10 @@ export class GetAllComponent implements OnInit {
       programming: this.getService.getProgramming(data),
       delivery: this.getService.getDelivery(data),
       deliveryReport: this.getService.getDeliveryReport(data),
-      billing: this.getService.getBilling(data)
+      billing: this.getService.getBilling(data),
+      addressing: this.getService.getAddressing(data)
     })
-    .subscribe(({programming, delivery, deliveryReport, billing}) => {
+    .subscribe(({programming, delivery, deliveryReport, billing, addressing}) => {
       this.setState();
       this.programmingData = programming.data;
       this.programming = programming.data;
@@ -85,6 +86,7 @@ export class GetAllComponent implements OnInit {
       localStorage.setItem('deliveryReport', JSON.stringify(this.deliveryReport));
       localStorage.setItem('billing', JSON.stringify(this.billing));
       localStorage.setItem('programming', JSON.stringify(this.programming));
+      localStorage.setItem('addressing', JSON.stringify(addressing.data));
     }, () => {
       this.setState();
     });

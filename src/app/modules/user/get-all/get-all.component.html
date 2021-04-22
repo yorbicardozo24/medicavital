@@ -1,4 +1,4 @@
-<div class="p-5">
+<div class="py-2 px-5">
     <app-search
         [user]="user"
         get="todos los gets"
@@ -38,6 +38,20 @@
                 [data]="billing"
                 name="Facturación"
             ></app-content>
+        </div>
+    </div>
+    <div class="row" *ngIf="!loading">
+        <div class="col-md-3">
+            <app-programming></app-programming>
+        </div>
+        <div class="col-md-3">
+            <app-delivery></app-delivery>
+        </div>
+        <div class="col-md-3">
+            <app-delivery-report></app-delivery-report>
+        </div>
+        <div class="col-md-3">
+            <app-billing></app-billing>
         </div>
     </div>
 </div>

@@ -8,6 +8,7 @@ import { PutRoutingModule } from './put-routing.module';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { GetModule } from '../get/get.module';
+import { PutComponent } from './put/put.component';
 
 
 
@@ -16,7 +17,8 @@ import { GetModule } from '../get/get.module';
     ProgrammingComponent,
     DeliveryComponent,
     DeliveryReportComponent,
-    BillingComponent
+    BillingComponent,
+    PutComponent
   ],
   imports: [
     CommonModule,

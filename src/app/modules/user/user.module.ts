@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { GetModule } from './get/get.module';
 import { PutModule } from './put/put.module';
 import { PrintComponent } from './print/print.component';
+import { CancelModule } from './cancel/cancel.module';
 
 
 
@@ -23,7 +24,8 @@ import { PrintComponent } from './print/print.component';
     SharedModule,
     FormsModule,
     GetModule,
-    PutModule
+    PutModule,
+    CancelModule
   ]
 })
 export class UserModule { }

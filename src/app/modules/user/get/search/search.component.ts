@@ -8,17 +8,18 @@ export class SearchComponent {
 
   @Input() user: string = '';
   @Input() get: string = '';
-  @Input() all: boolean = false;
   @Input() options: any[] = [];
   @Output() onEnter: EventEmitter<string> = new EventEmitter();
   @Output() onHide: EventEmitter<boolean> = new EventEmitter();
-  @Output() onPrint: EventEmitter<string> = new EventEmitter();
+  @Output() onPrint: EventEmitter<any> = new EventEmitter();
   @Output() onDelivery: EventEmitter<any> = new EventEmitter();
   @Output() onClear: EventEmitter<any> = new EventEmitter();
 
   termino: string = '';
+  terminoFac: string = '';
   code: any = '';
   id: string = '';
+  idFact: string = '';
   hide: boolean = false;
 
   search() {
@@ -26,7 +27,7 @@ export class SearchComponent {
   }
 
   print() {
-    this.onPrint.emit(this.id);
+    this.onPrint.emit( {id: this.id, idFact: this.idFact} );
   }
 
   clear() {

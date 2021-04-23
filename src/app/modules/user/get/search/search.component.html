@@ -14,7 +14,7 @@
             />
         </form>
     </div>
-    <div class="col-md-2 d-flex align-items-center" *ngIf="all">
+    <div class="col-md-2 d-flex align-items-center">
         <div class="custom-control custom-switch">
             <input
                 type="checkbox"
@@ -38,13 +38,20 @@
             <span *ngIf="code > 0" role="button" tabindex="0" class="material-icons" (click)="clear()">clear</span>
         </form>
     </div>
-    <div class="col-md-3 d-flex align-items-center" *ngIf="all">
+    <div class="col-md-3">
         <input
             type="text"
             name="termino"
-            class="form-control mr-3"
+            class="form-control mr-3 mb-3"
             [(ngModel)]="id"
             placeholder="ID"
+        />
+        <input
+            type="text"
+            name="terminoFac"
+            class="form-control mr-3 mb-3"
+            [(ngModel)]="idFact"
+            placeholder="ID Fac"
         />
         <button (click)="print()" class="btn btn-primary">Imprimir</button>
     </div>

@@ -33,7 +33,7 @@ const routes: Routes = [
         ]
     },
     {
-        path: 'print/:id',
+        path: 'print',
         component: PrintComponent
     },
 ]

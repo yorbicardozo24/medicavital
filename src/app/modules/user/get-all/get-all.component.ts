@@ -121,7 +121,7 @@ export class GetAllComponent implements OnInit {
   }
 
   print( $event: any) {
-    this.router.navigate([`/user/print/${ $event }`]);
+    this.router.navigate([`/user/print`, {id: $event.id, idFact: $event.idFact}]);
   }
 
   noDelivery( $event: any ) {

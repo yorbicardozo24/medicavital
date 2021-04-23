@@ -25,9 +25,10 @@ body {
 }
 
 .respJson {
-    height: 441px;
+    height: 363px;
     background: #151C52;
     overflow: auto;
+    font-size: 76.1%;
 }
 
 .w50 {

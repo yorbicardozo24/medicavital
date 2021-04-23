@@ -14,6 +14,8 @@ export class DeliveryReportComponent implements OnInit, OnDestroy {
   loading: boolean = true;
   cancelDeliveryReport: boolean = false;
 
+  resp: string = '';
+
   constructor(
     private cancelService: CancelService
   ) { }
@@ -21,9 +23,6 @@ export class DeliveryReportComponent implements OnInit, OnDestroy {
   ngOnInit(): void { }
 
   anular( id: any ) {
-    if(typeof(id) === 'object') {
-      id = id.id;
-    }
     this.cancelDeliveryReport = true;
     this.loading = true;
     const data = {
@@ -33,10 +32,10 @@ export class DeliveryReportComponent implements OnInit, OnDestroy {
 
     this.subscription.push(
       this.cancelService.cancelDeliveryReport(data).subscribe((res) => {
-        this.deliveryReport = res.data;
+        this.resp = res.data[0].Mensaje;
         this.setState();
       }, (err) => {
-        this.deliveryReport = err.error.message;
+        this.resp = err.error.message;
         this.setState();
       })
     );

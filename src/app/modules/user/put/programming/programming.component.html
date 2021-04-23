@@ -75,10 +75,7 @@
         </div>
         <div class="row mt-5" *ngIf="!loading">
             <div class="col-md-12">
-                <app-content
-                    [data]="response"
-                    name="Respuesta:"
-                ></app-content>
+                {{ response }}
             </div>
         </div>
     </div>

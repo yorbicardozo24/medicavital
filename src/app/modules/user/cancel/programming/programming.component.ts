@@ -14,6 +14,8 @@ export class ProgrammingComponent implements OnInit, OnDestroy {
   loading: boolean = true;
   cancelProgramming: boolean = false;
 
+  resp: string = '';
+
   constructor(
     private cancelService: CancelService
   ) { }
@@ -21,9 +23,6 @@ export class ProgrammingComponent implements OnInit, OnDestroy {
   ngOnInit(): void { }
 
   anular( id: any ) {
-    if(typeof(id) === 'object') {
-      id = id.id;
-    }
     this.cancelProgramming = true;
     this.loading = true;
     const data = {
@@ -33,10 +32,10 @@ export class ProgrammingComponent implements OnInit, OnDestroy {
 
     this.subscription.push(
       this.cancelService.cancelProgramming(data).subscribe((res) => {
-        this.programming = res.data;
+        this.resp = res.data[0].Mensaje;
         this.setState();
       }, (err) => {
-        this.programming = err.error.message;
+        this.resp = err.error.message;
         this.setState();
       })
     );

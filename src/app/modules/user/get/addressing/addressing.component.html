@@ -7,6 +7,7 @@
         (onEnter)="search( $event )"
         (onDelivery)="noDelivery( $event )"
         (onClear)="showCanceled()"
+        [filter]="data"
     ></app-search>
     <div class="row mt-5" *ngIf="loading && searchAddressing">
         <div class="col-md-12">

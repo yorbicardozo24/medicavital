@@ -17,6 +17,7 @@ export class AddressingComponent implements OnInit, OnDestroy {
   
   loading: boolean = true;
   searchAddressing: boolean = false;
+  data: any;
 
   constructor(
     private getService: GetService,
@@ -31,6 +32,12 @@ export class AddressingComponent implements OnInit, OnDestroy {
       this.addressing = addressing;
       this.addressingData = addressing;
     }
+
+    const filter = JSON.parse(localStorage.getItem('filter')!);
+    if (filter != null ){
+      this.data = filter;
+      this.noDelivery(filter);
+    } 
   }
 
   search( termino: any ) {
@@ -85,6 +92,7 @@ export class AddressingComponent implements OnInit, OnDestroy {
   }
 
   showCanceled() {
+    localStorage.removeItem('filter');
     this.addressing = this.addressingData;
   }
 
@@ -93,6 +101,7 @@ export class AddressingComponent implements OnInit, OnDestroy {
   }
 
   noDelivery( $event: any ) {
+    localStorage.setItem('filter', JSON.stringify($event));
     if ($event.tipo != '' && $event.conTec != '' && $event.nEntrega != '') {
       this.filterAll($event)
     } else if ($event.tipo != '' && $event.conTec == '' && $event.nEntrega == '') {

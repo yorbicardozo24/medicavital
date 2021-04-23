@@ -25,9 +25,15 @@ export class PutComponent implements OnInit {
     if (this.suggestions != null) {
       this.options = this.suggestions.map((item) => ({id: item.ID}) );
     }
+    const putId = localStorage.getItem('putId');
+    if (putId != undefined) {
+      this.id = putId;
+      this.search();
+    }
   }
 
   search() {
+    localStorage.setItem('putId', this.id);
     if(this.suggestions != null) {
       const resp = this.suggestions.find((a) => a.ID == this.id);
       if (resp != null || resp != undefined) {

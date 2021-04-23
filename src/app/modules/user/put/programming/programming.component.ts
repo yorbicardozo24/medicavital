@@ -81,7 +81,7 @@ export class ProgrammingComponent implements OnInit, OnDestroy {
 
       this.subscription.push(
         this.putService.putProgramming(data).subscribe((res) => {
-          this.response = res;
+          this.response = res.data[0].Mensaje;
           this.setState();
         }, (err) => {
           this.response = err.error.message;

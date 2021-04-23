@@ -14,6 +14,8 @@ export class BillingComponent implements OnInit, OnDestroy {
   loading: boolean = true;
   cancelBilling: boolean = false;
 
+  resp: string = '';
+
   constructor(
     private cancelService: CancelService
   ) { }
@@ -21,9 +23,6 @@ export class BillingComponent implements OnInit, OnDestroy {
   ngOnInit(): void { }
 
   anular( id: any ) {
-    if(typeof(id) === 'object') {
-      id = id.id;
-    }
     this.cancelBilling = true;
     this.loading = true;
     const data = {
@@ -33,10 +32,10 @@ export class BillingComponent implements OnInit, OnDestroy {
 
     this.subscription.push(
       this.cancelService.cancelBilling(data).subscribe((res) => {
-        this.billing = res.data;
+        this.resp = res.data[0].Mensaje;
         this.setState();
       }, (err) => {
-        this.billing = err.error.message;
+        this.resp = err.error.message;
         this.setState();
       })
     );

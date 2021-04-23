@@ -10,11 +10,8 @@
         </div>
     </div>
     <div class="row mt-5" *ngIf="!loading">
-        <div class="col-md-3">
-            <app-content
-                [data]="billing"
-                name="Programación"
-            ></app-content>
+        <div class="col-md-12">
+            {{ resp }}
         </div>
     </div>
 </div>

@@ -72,7 +72,7 @@ export class DeliveryReportComponent implements OnInit, OnDestroy {
 
       this.subscription.push(
         this.putService.putDeliveryReport(data).subscribe((res) => {
-          this.response = res;
+          this.response = res.data[0].Mensaje;
           this.setState();
         }, (err) => {
           this.response = err.error.message;

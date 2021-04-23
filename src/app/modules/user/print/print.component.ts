@@ -3,7 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-print',
-  templateUrl: './print.component.html'
+  templateUrl: './print.component.html',
+  styles: [
+    'pre { display: block; font-size: 110.5%; color: #212529; margin: 0; padding: 0; border: none !important;}'
+  ]
 })
 export class PrintComponent implements OnInit {
 
@@ -25,28 +28,28 @@ export class PrintComponent implements OnInit {
     if (programming != null) {
       const programmingData = programming.filter((item: any) => item.ID == id);
       if(programmingData.length > 0) {
-        this.data.push(programmingData);
+        this.data.push(programmingData[0]);
       }
     }
 
     if (delivery != null) {
       const deliveryData = delivery.filter((item: any) => item.ID == id);
       if(deliveryData.length > 0) {
-        this.data.push(deliveryData);
+        this.data.push(deliveryData[0]);
       }
     }
 
     if (deliveryReport != null) {
       const deliveryReportData = deliveryReport.filter((item: any) => item.ID == id);
       if(deliveryReportData.length > 0) {
-        this.data.push(deliveryReportData);
+        this.data.push(deliveryReportData[0]);
       }
     }
 
     if(billing != null) {
       const billingData = billing.filter((item: any) => item.ID == idFact);
       if(billingData.length > 0) {
-        this.data.push(billingData);
+        this.data.push(billingData[0]);
       }
     }
 

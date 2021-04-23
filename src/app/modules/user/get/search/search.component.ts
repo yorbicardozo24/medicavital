@@ -1,15 +1,16 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html'
 })
-export class SearchComponent {
+export class SearchComponent implements OnInit {
 
   @Input() user: string = '';
   @Input() get: string = '';
   @Input() options: any[] = [];
   @Input() all: boolean = false;
+  @Input() filter: any;
   @Output() onEnter: EventEmitter<string> = new EventEmitter();
   @Output() onHide: EventEmitter<boolean> = new EventEmitter();
   @Output() onPrint: EventEmitter<any> = new EventEmitter();
@@ -27,6 +28,14 @@ export class SearchComponent {
 
   search() {
     this.onEnter.emit( this.termino );
+  }
+
+  ngOnInit() {
+    if (this.filter != undefined) {
+      this.code = this.filter.nEntrega;
+      this.TipoTec = this.filter.tipo;
+      this.ConTec = this.filter.conTec;
+    }
   }
 
   print() {

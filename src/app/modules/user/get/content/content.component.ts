@@ -8,6 +8,7 @@ export class ContentComponent implements OnInit {
 
   @Input() data: string[] = [];
   @Input() name: string = '';
+  @Input() title: boolean = true;
 
   messageMapping:
     {[k: string]: string} = {

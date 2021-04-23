@@ -24,6 +24,8 @@ export class GetAllComponent implements OnInit {
   loading: boolean = true;
   searchAll: boolean = false;
 
+  data: any;
+
   constructor(
     private getService: GetService,
     private router: Router
@@ -55,6 +57,12 @@ export class GetAllComponent implements OnInit {
       this.billing = billing;
       this.billingData = billing;
     }
+
+    const filter = JSON.parse(localStorage.getItem('filter')!);
+    if (filter != null ){
+      this.data = filter;
+      this.noDelivery(filter);
+    } 
   }
 
   search(termino: any) {
@@ -114,6 +122,7 @@ export class GetAllComponent implements OnInit {
   }
 
   showCanceled() {
+    localStorage.removeItem('filter');
     this.programming = this.programmingData;
     this.delivery = this.deliveryData;
     this.deliveryReport = this.deliveryReportData;
@@ -125,6 +134,7 @@ export class GetAllComponent implements OnInit {
   }
 
   noDelivery( $event: any ) {
+    localStorage.setItem('filter', JSON.stringify($event));
     if ($event.tipo != '' && $event.conTec != '' && $event.nEntrega != '') {
       this.filterAll($event)
     } else if ($event.tipo != '' && $event.conTec == '' && $event.nEntrega == '') {

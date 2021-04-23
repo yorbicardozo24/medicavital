@@ -129,7 +129,7 @@ export class BillingComponent implements OnInit, OnDestroy {
 
       this.subscription.push(
         this.putService.putBilling(data).subscribe((res) => {
-          this.response = res;
+          this.response = res.data[0].Mensaje;
           this.setState();
         }, (err) => {
           this.response = err.error.message;

@@ -14,6 +14,8 @@ export class DeliveryComponent implements OnInit, OnDestroy {
   loading: boolean = true;
   cancelDelivery: boolean = false;
 
+  resp: string = '';
+
   constructor(
     private cancelService: CancelService
   ) { }
@@ -33,10 +35,10 @@ export class DeliveryComponent implements OnInit, OnDestroy {
 
     this.subscription.push(
       this.cancelService.cancelDelivery(data).subscribe((res) => {
-        this.loading = res.data;
+        this.resp = res.data[0].Mensaje;
         this.setState();
       }, (err) => {
-        this.loading = err.error.message;
+        this.resp = err.error.message;
         this.setState();
       })
     );

@@ -1,4 +1,4 @@
-<div *ngIf="!sendCode">
+<div *ngIf="!codeSent">
     <h2 class="mb-5 text-center">Enviar código</h2>
     <div class="mb-5 flex search-form search-form--login">
         <label for="codigo" class="material-icons mr-3 ml-3 mb-0 text-muted">tag</label>
@@ -27,7 +27,7 @@
     </div>
 </div>
 
-<div *ngIf="sendCode">
+<div *ngIf="codeSent">
     <h2 class="mb-5 text-center">Cambiar contraseña</h2>
     <div class="mb-5 flex search-form search-form--login">
         <label for="password" class="material-icons mr-3 ml-3 mb-0 text-muted">vpn_key</label>

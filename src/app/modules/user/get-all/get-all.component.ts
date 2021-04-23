@@ -107,10 +107,10 @@ export class GetAllComponent implements OnInit {
   }
 
   hideCanceled() {
-    this.programming = this.programmingData.filter((item: any) => item.FecAnulacion === null );
-    this.delivery = this.deliveryData.filter((item: any) => item.FecAnulacion === null );
-    this.deliveryReport = this.deliveryReportData.filter((item: any) => item.FecAnulacion === null );
-    this.billing = this.billingData.filter((item: any) => item.FecAnulacion === null );
+    this.programming = this.programming.filter((item: any) => item.FecAnulacion === null );
+    this.delivery = this.delivery.filter((item: any) => item.FecAnulacion === null );
+    this.deliveryReport = this.deliveryReport.filter((item: any) => item.FecAnulacion === null );
+    this.billing = this.billing.filter((item: any) => item.FecAnulacion === null );
   }
 
   showCanceled() {
@@ -125,10 +125,119 @@ export class GetAllComponent implements OnInit {
   }
 
   noDelivery( $event: any ) {
-    this.programming = this.programmingData.filter((item: any) => item.NoEntrega == $event );
-    this.delivery = this.deliveryData.filter((item: any) => item.NoEntrega == $event );
-    this.deliveryReport = this.deliveryReportData.filter((item: any) => item.NoEntrega == $event );
-    this.billing = this.billingData.filter((item: any) => item.NoEntrega == $event );
+    if ($event.tipo != '' && $event.conTec != '' && $event.nEntrega != '') {
+      this.filterAll($event)
+    } else if ($event.tipo != '' && $event.conTec == '' && $event.nEntrega == '') {
+      this.filterByTipo($event.tipo);
+    } else if ($event.tipo == '' && $event.conTec != '' && $event.nEntrega == '') {
+      this.filterByConTec($event.conTec);
+    } else if ($event.tipo != '' && $event.conTec != '' && $event.nEntrega == '') {
+      this.filterByTipoAndConTec($event.tipo, $event.conTec);
+    }
+  }
+
+  filterByTipoAndConTec(tipo: string, conTec: any) {
+    this.programming = 
+    this.programming.filter(
+      (item: any) =>
+        item.TipoTec == tipo && 
+        item.ConTec == conTec
+      );
+  this.delivery = 
+    this.delivery.filter(
+      (item: any) =>
+        item.TipoTec == tipo &&
+        item.ConTec == conTec
+      );
+  this.deliveryReport = 
+    this.deliveryReport.filter(
+      (item: any) => 
+        item.TipoTec == tipo &&
+        item.ConTec == conTec 
+      );
+  this.billing = 
+    this.billing.filter(
+      (item: any) => 
+        item.TipoTec == tipo &&
+        item.ConTec == conTec
+      );
+  }
+
+  filterByConTec(conTec: any) {
+    this.programming = 
+    this.programming.filter(
+      (item: any) =>
+        item.ConTec == conTec
+      );
+  this.delivery = 
+    this.delivery.filter(
+      (item: any) =>
+        item.ConTec == conTec
+      );
+  this.deliveryReport = 
+    this.deliveryReport.filter(
+      (item: any) => 
+        item.ConTec == conTec
+      );
+  this.billing = 
+    this.billing.filter(
+      (item: any) => 
+        item.ConTec == conTec
+      );
+  }
+
+  filterByTipo(tipo: string) {
+    this.programming = 
+      this.programming.filter(
+        (item: any) =>
+          item.TipoTec == tipo
+        );
+    this.delivery = 
+      this.delivery.filter(
+        (item: any) =>
+          item.TipoTec == tipo
+        );
+    this.deliveryReport = 
+      this.deliveryReport.filter(
+        (item: any) => 
+          item.TipoTec == tipo
+        );
+    this.billing = 
+      this.billing.filter(
+        (item: any) => 
+          item.TipoTec == tipo
+        );
+  }
+
+  filterAll($event: any) {
+    this.programming = 
+      this.programming.filter(
+        (item: any) =>
+          item.TipoTec == $event.tipo && 
+          item.ConTec == $event.conTec && 
+          item.NoEntrega == $event.nEntrega
+        );
+    this.delivery = 
+      this.delivery.filter(
+        (item: any) =>
+          item.TipoTec == $event.tipo &&
+          item.ConTec == $event.conTec &&
+          item.NoEntrega == $event.nEntrega
+        );
+    this.deliveryReport = 
+      this.deliveryReport.filter(
+        (item: any) => 
+          item.TipoTec == $event.tipo &&
+          item.ConTec == $event.conTec && 
+          item.NoEntrega == $event.nEntrega
+        );
+    this.billing = 
+      this.billing.filter(
+        (item: any) => 
+          item.TipoTec == $event.tipo &&
+          item.ConTec == $event.conTec &&
+          item.NoEntrega == $event.nEntrega
+        );
   }
 
 }

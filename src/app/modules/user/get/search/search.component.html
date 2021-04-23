@@ -14,8 +14,8 @@
             />
         </form>
     </div>
-    <div class="col-md-2 d-flex align-items-center">
-        <div class="custom-control custom-switch">
+    <div class="col-md-2">
+        <div class="custom-control custom-switch mt-2">
             <input
                 type="checkbox"
                 class="custom-control-input"
@@ -27,18 +27,39 @@
         </div>
     </div>
     <div class="col-md-3">
-        <form (ngSubmit)="nDelivery()" class="d-flex align-items-center" autocomplete="off">
+        <form (ngSubmit)="nDelivery()" autocomplete="off">
+            <input
+                type="text"
+                name="TipoTec"
+                class="form-control mr-3 mb-3"
+                [(ngModel)]="TipoTec"
+                placeholder="Tipo Tec"
+            />
+            <input
+                type="text"
+                name="ConTec"
+                class="form-control mr-3 mb-3"
+                [(ngModel)]="ConTec"
+                placeholder="Con Tec"
+            />
             <input
                 type="text"
                 name="code"
-                class="form-control mr-3"
+                class="form-control mr-3 mb-3"
                 [(ngModel)]="code"
                 placeholder="No Entrega"
             />
-            <span *ngIf="code > 0" role="button" tabindex="0" class="material-icons" (click)="clear()">clear</span>
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary btn-block">Filtrar</button>
+                </div>
+                <div class="col-md-6">
+                    <button type="button" (click)="clear()" class="btn btn-secondary btn-block">Limpiar</button>
+                </div>
+            </div>
         </form>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3" *ngIf="all">
         <input
             type="text"
             name="termino"
@@ -53,6 +74,6 @@
             [(ngModel)]="idFact"
             placeholder="ID Fac"
         />
-        <button (click)="print()" class="btn btn-primary">Imprimir</button>
+        <button (click)="print()" class="btn btn-primary btn-block">Imprimir</button>
     </div>
 </div>

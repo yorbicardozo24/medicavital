@@ -9,6 +9,7 @@ export class SearchComponent {
   @Input() user: string = '';
   @Input() get: string = '';
   @Input() options: any[] = [];
+  @Input() all: boolean = false;
   @Output() onEnter: EventEmitter<string> = new EventEmitter();
   @Output() onHide: EventEmitter<boolean> = new EventEmitter();
   @Output() onPrint: EventEmitter<any> = new EventEmitter();
@@ -18,6 +19,8 @@ export class SearchComponent {
   termino: string = '';
   terminoFac: string = '';
   code: any = '';
+  ConTec: any = '';
+  TipoTec: any = '';
   id: string = '';
   idFact: string = '';
   hide: boolean = false;
@@ -31,6 +34,9 @@ export class SearchComponent {
   }
 
   clear() {
+    this.TipoTec = '';
+    this.ConTec = '';
+    this.code = '';
     this.onClear.emit();
   }
 
@@ -39,7 +45,13 @@ export class SearchComponent {
   }
 
   nDelivery() {
-    this.onDelivery.emit( this.code );
+    this.onDelivery.emit(
+      {
+        tipo: this.TipoTec,
+        conTec: this.ConTec,
+        nEntrega: this.code
+      }
+    );
   }
 
 }

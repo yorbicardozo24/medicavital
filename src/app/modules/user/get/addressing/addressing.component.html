@@ -2,7 +2,11 @@
     <app-search
         [user]="user"
         get="direccionamiento"
+        (onHide)="toggleCanceled( $event )"
+        (onPrint)="print( $event )"
         (onEnter)="search( $event )"
+        (onDelivery)="noDelivery( $event )"
+        (onClear)="showCanceled()"
     ></app-search>
     <div class="row mt-5" *ngIf="loading && searchAddressing">
         <div class="col-md-12">

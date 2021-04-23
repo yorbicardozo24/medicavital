@@ -30,6 +30,7 @@ export class BillingComponent implements OnInit, OnDestroy {
   ValorTotFacturado: string = '';
   CuotaModer: number = 0;
   Copago: number = 0;
+  NoSubEntrega: number = 0;
   
   response: any = '';
 
@@ -113,6 +114,7 @@ export class BillingComponent implements OnInit, OnDestroy {
         TipoIDPaciente: this.data.TipoIDPaciente,
         NoIDPaciente: this.data.NoIDPaciente,
         NoEntrega: this.data.NoEntrega,
+        NoSubEntrega: this.NoSubEntrega,
         NoFactura: this.NoFactura,
         NoIDEPS: this.data.NoIDEPS,
         CodEPS: this.data.CodEPS,

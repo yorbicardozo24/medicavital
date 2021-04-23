@@ -127,17 +127,15 @@ export class BillingComponent implements OnInit, OnDestroy {
         token: JSON.parse(localStorage.getItem('user')!).createdToken
       }
 
-      console.log(data);
-
-      // this.subscription.push(
-      //   this.putService.putBilling(data).subscribe((res) => {
-      //     this.response = res;
-      //     this.setState();
-      //   }, (err) => {
-      //     this.response = err.error.message;
-      //     this.setState();
-      //   })
-      // );
+      this.subscription.push(
+        this.putService.putBilling(data).subscribe((res) => {
+          this.response = res;
+          this.setState();
+        }, (err) => {
+          this.response = err.error.message;
+          this.setState();
+        })
+      );
     }
   }
 

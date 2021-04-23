@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { forkJoin } from 'rxjs';
 import { GetService } from '../../services/get.service';
 
 @Component({
@@ -40,14 +41,25 @@ export class AddressingComponent implements OnInit, OnDestroy {
       id: termino
     };
 
-    this.subscription.push(
-      this.getService.getAddressing(data).subscribe((res) => {
-        this.addressing = res.data;
-        this.addressingData = res.data;
-        this.setState();
-        localStorage.setItem('addressing', JSON.stringify(this.addressing));
-      }, () => this.setState() )
-    );
+    forkJoin({
+      programming: this.getService.getProgramming(data),
+      delivery: this.getService.getDelivery(data),
+      deliveryReport: this.getService.getDeliveryReport(data),
+      billing: this.getService.getBilling(data),
+      addressing: this.getService.getAddressing(data)
+    })
+    .subscribe(({programming, delivery, deliveryReport, billing, addressing}) => {
+      this.setState();
+      this.addressing = addressing.data;
+      this.addressingData = addressing.data;
+      localStorage.setItem('delivery', JSON.stringify(delivery.data));
+      localStorage.setItem('deliveryReport', JSON.stringify(deliveryReport.data));
+      localStorage.setItem('billing', JSON.stringify(billing.data));
+      localStorage.setItem('programming', JSON.stringify(programming.data));
+      localStorage.setItem('addressing', JSON.stringify(addressing.data));
+    }, () => {
+      this.setState();
+    });
 
   }
 

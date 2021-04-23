@@ -1,65 +1,73 @@
-<div class="sidebar">
-    <div class="d-flex flex-column justify-content-between sidebarContent">
-        <div>
-            <div class="sidebarLogoContainer mt-4 mb-4">
-                <div class="siderBarLogo"></div>
-            </div>
-            <ul class="sidebar-menu">
-                <li
-                    class="sidebar-menu-item"
-                    *ngFor="let item of items"
-                    [ngClass]="{
-                        active: item.url && router.url.toString().indexOf(item.url) > -1
-                    }"
+<nav class="navbar navbar-expand-lg fixed-top" style="background: #151C52;">    
+    <div class="sidebarLogoContainer">
+        <div class="siderBarLogo"></div>
+    </div>
+    
+    <button
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" 
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        class="navbar-toggler"
+    >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="navbarSupportedContent" class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+            <li
+                class="sidebar-menu-item mr-2"
+                *ngFor="let item of items"
+                [ngClass]="{
+                    active: item.url && router.url.toString().indexOf(item.url) > -1
+                }"
+            >
+                <a
+                    class="sidebar-menu-button"
+                    [ngClass]="{'true': !item.isCollapsed}"
+                    href="javascript: void(0);"
+                    (click)="toggleMenuItem(item)"
+                    *ngIf="item.children.length > 0"
                 >
-                    <a
-                        class="sidebar-menu-button"
-                        [ngClass]="{'true': !item.isCollapsed}"
-                        href="javascript: void(0);"
-                        (click)="toggleMenuItem(item)"
-                        *ngIf="item.children.length > 0"
-                    >
-                        <span class="material-icons mr-2">{{ item.icon }}</span>
-                        {{ item.name }}
-                        <span class="ml-auto material-icons">chevron_right</span>
-                    </a>
-                    <a
-                        class="sidebar-menu-button"
-                        [routerLink]="item.url"
+                    <span class="material-icons mr-2">{{ item.icon }}</span>
+                    {{ item.name }}
+                    <span class="ml-auto material-icons">chevron_right</span>
+                </a>
+                <a
+                    class="sidebar-menu-button"
+                    [routerLink]="item.url"
+                    routerLinkActive="active"
+                    (click)="toggleMenuItem(item)"
+                    *ngIf="item.children.length == 0"
+                >
+                    <span class="material-icons mr-2">{{ item.icon }}</span>
+                    {{ item.name }}
+                </a>
+                
+                <ul
+                    class="sidebar-submenu sm-ident"
+                    *ngIf="item.children.length > 0 && !item.isCollapsed"
+                >
+                    <li
+                        class="sidebar-menu-item"
+                        *ngFor="let submenu of item.children"
                         routerLinkActive="active"
-                        (click)="toggleMenuItem(item)"
-                        *ngIf="item.children.length == 0"
+                        [routerLinkActiveOptions]="{exact: true}"
                     >
-                        <span class="material-icons mr-2">{{ item.icon }}</span>
-                        {{ item.name }}
-                    </a>
-                    
-                    <ul
-                        class="sidebar-submenu sm-ident"
-                        *ngIf="item.children.length > 0 && !item.isCollapsed"
-                    >
-                        <li
-                            class="sidebar-menu-item"
-                            *ngFor="let submenu of item.children"
+                        <a
+                            class="sidebar-menu-button"
+                            [routerLink]="submenu.url"
                             routerLinkActive="active"
                             [routerLinkActiveOptions]="{exact: true}"
                         >
-                            <a
-                                class="sidebar-menu-button"
-                                [routerLink]="submenu.url"
-                                routerLinkActive="active"
-                                [routerLinkActiveOptions]="{exact: true}"
-                            >
-                                <span class="sidebar-menu-text">
-                                    {{ submenu.name }}
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <ul class="sidebar-menu m-0">
+                            <span class="sidebar-menu-text">
+                                {{ submenu.name }}
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li class="sidebar-menu-item">
                 <a
                     class="sidebar-menu-button"
@@ -72,4 +80,4 @@
             </li>
         </ul>
     </div>
-</div>
+</nav>

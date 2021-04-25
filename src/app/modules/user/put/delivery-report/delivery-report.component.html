@@ -7,6 +7,7 @@
             id="EstadoEntrega"
             class="form-control"
             [(ngModel)]="EstadoEntrega"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12 mb-4">
@@ -17,6 +18,7 @@
             id="CausaNoEntrega"
             class="form-control"
             [(ngModel)]="CausaNoEntrega"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12 mb-5">
@@ -27,6 +29,7 @@
             id="ValorEntregado"
             class="form-control"
             [(ngModel)]="ValorEntregado"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12">

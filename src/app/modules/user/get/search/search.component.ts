@@ -36,6 +36,10 @@ export class SearchComponent implements OnInit {
       this.TipoTec = this.filter.tipo;
       this.ConTec = this.filter.conTec;
     }
+    const mipres = localStorage.getItem('mipres');
+    if (mipres != null) {
+      this.termino = mipres;
+    }
   }
 
   print() {

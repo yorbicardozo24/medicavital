@@ -62,10 +62,11 @@ export class GetAllComponent implements OnInit {
     if (filter != null ){
       this.data = filter;
       this.noDelivery(filter);
-    } 
+    }
   }
 
   search(termino: any) {
+    localStorage.setItem('mipres', termino);
     this.searchAll = true;
     this.loading = true;
     const data = {

@@ -7,6 +7,7 @@
             id="NoPrescripcion"
             class="form-control"
             [(ngModel)]="data.NoPrescripcion"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12 mb-4">
@@ -17,6 +18,7 @@
             id="TipoTec"
             class="form-control"
             [(ngModel)]="data.TipoTec"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12 mb-4">
@@ -27,6 +29,7 @@
             id="ConTec"
             class="form-control"
             [(ngModel)]="data.ConTec"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12 mb-4">
@@ -37,6 +40,7 @@
             id="TipoIDPaciente"
             class="form-control"
             [(ngModel)]="data.TipoIDPaciente"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12 mb-4">
@@ -47,6 +51,7 @@
             id="NoIDPaciente"
             class="form-control"
             [(ngModel)]="data.NoIDPaciente"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12 mb-4">
@@ -57,6 +62,7 @@
             id="NoEntrega"
             class="form-control"
             [(ngModel)]="data.NoEntrega"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12 mb-4">
@@ -67,6 +73,7 @@
             id="NoSubEntrega"
             class="form-control"
             [(ngModel)]="NoSubEntrega"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12 mb-4">
@@ -77,6 +84,7 @@
             id="NoFactura"
             class="form-control"
             [(ngModel)]="NoFactura"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12 mb-5">
@@ -87,6 +95,7 @@
             id="NoIDEPS"
             class="form-control"
             [(ngModel)]="data.NoIDEPS"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12 mb-5">
@@ -97,6 +106,7 @@
             id="CodEPS"
             class="form-control"
             [(ngModel)]="data.CodEPS"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12 mb-5">
@@ -107,6 +117,7 @@
             id="CodSerTecAEntregarBilling"
             class="form-control"
             [(ngModel)]="data.CodSerTecAEntregarBilling"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-6 mb-5">
@@ -117,6 +128,7 @@
             id="CantUnMinDis"
             class="form-control"
             [(ngModel)]="CantUnMinDis"
+            (input)="changeForm()"
             disabled
         />
     </div>
@@ -141,6 +153,7 @@
             id="ValorUnitFacturado"
             class="form-control"
             [(ngModel)]="ValorUnitFacturado"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12 mb-5">
@@ -151,6 +164,7 @@
             id="ValorTotFacturado"
             class="form-control"
             [(ngModel)]="ValorTotFacturado"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12 mb-5">
@@ -161,6 +175,7 @@
             id="CuotaModer"
             class="form-control"
             [(ngModel)]="CuotaModer"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12 mb-5">
@@ -171,6 +186,7 @@
             id="Copago"
             class="form-control"
             [(ngModel)]="Copago"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12">

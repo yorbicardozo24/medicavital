@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PutService } from '../../services/put.service';
@@ -36,6 +37,13 @@ export class ProgrammingComponent implements OnInit, OnDestroy {
     this.suggestions = JSON.parse(localStorage.getItem('programming')!);
     if (this.suggestions != null) {
       this.options = this.suggestions.map((item) => ({id: item.ID}) );
+    }
+    const programmingPut = JSON.parse(localStorage.getItem('programmingPut')!);
+
+    if (programmingPut != null) {
+      this.tipoId = programmingPut.tipoId;
+      this.noIdSede = programmingPut.noIdSede;
+      this.codSede = programmingPut.codSede;
     }
   }
 
@@ -81,7 +89,8 @@ export class ProgrammingComponent implements OnInit, OnDestroy {
 
       this.subscription.push(
         this.putService.putProgramming(data).subscribe((res) => {
-          this.response = res.data[0].Mensaje;
+          console.log(res);
+          this.response = res.data;
           this.setState();
         }, (err) => {
           this.response = err.error.message;
@@ -94,6 +103,20 @@ export class ProgrammingComponent implements OnInit, OnDestroy {
   setState() {
     this.loading = false;
     this.putProgramming = false;
+  }
+
+  changeForm() {
+    const data = {
+      id: this.data.id,
+      fec: this.data.fec,
+      tipoId: this.tipoId,
+      noIdSede: this.noIdSede,
+      codSede: this.codSede,
+      codSerTec: this.data.codSerTec,
+      cantidad: this.data.cantidad,
+    }
+
+    localStorage.setItem('programmingPut', JSON.stringify(data));
   }
 
 }

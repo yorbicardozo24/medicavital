@@ -52,6 +52,17 @@ export class BillingComponent implements OnInit, OnDestroy {
     if (this.suggestions != null) {
       this.options = this.suggestions.map((item) => ({id: item.ID}) );
     }
+    const billingPut = JSON.parse(localStorage.getItem('billingPut')!);
+
+    if (billingPut != null) {
+      this.NoFactura = billingPut.NoFactura;
+      this.CantUnMinDis = billingPut.CantUnMinDis;
+      this.ValorUnitFacturado = billingPut.ValorUnitFacturado;
+      this.ValorTotFacturado = billingPut.ValorTotFacturado;
+      this.NoSubEntrega = billingPut.NoSubEntrega;
+      this.CuotaModer = billingPut.CuotaModer;
+      this.Copago = billingPut.Copago;
+    }
   }
 
   search( event: any ) {
@@ -79,6 +90,7 @@ export class BillingComponent implements OnInit, OnDestroy {
 
   changeDis( $event: any ) {
     this.CantUnMinDis = $event.value;
+    this.changeForm();
   }
 
   ngOnDestroy(): void {
@@ -129,7 +141,8 @@ export class BillingComponent implements OnInit, OnDestroy {
 
       this.subscription.push(
         this.putService.putBilling(data).subscribe((res) => {
-          this.response = res.data[0].Mensaje;
+          console.log(res);
+          this.response = res.data;
           this.setState();
         }, (err) => {
           this.response = err.error.message;
@@ -142,6 +155,30 @@ export class BillingComponent implements OnInit, OnDestroy {
   setState() {
     this.loading = false;
     this.putBilling= false;
+  }
+
+  changeForm() {
+    const data = {
+      ID: this.data.id,
+      NoPrescripcion: this.data.NoPrescripcion,
+      TipoTec: this.data.TipoTec,
+      ConTec: this.data.ConTec,
+      TipoIDPaciente: this.data.TipoIDPaciente,
+      NoIDPaciente: this.data.NoIDPaciente,
+      NoEntrega: this.data.NoEntrega,
+      NoSubEntrega: this.NoSubEntrega,
+      NoFactura: this.NoFactura,
+      NoIDEPS: this.data.NoIDEPS,
+      CodEPS: this.data.CodEPS,
+      CodSerTecAEntregado: this.data.CodSerTecAEntregarBilling,
+      CantUnMinDis: this.CantUnMinDis,
+      ValorUnitFacturado: this.ValorUnitFacturado,
+      ValorTotFacturado: this.ValorTotFacturado,
+      CuotaModer: this.CuotaModer,
+      Copago: this.Copago
+    }
+
+    localStorage.setItem('billingPut', JSON.stringify(data));
   }
 
 }

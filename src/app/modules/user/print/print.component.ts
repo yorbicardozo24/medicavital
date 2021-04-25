@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'app-print',
   templateUrl: './print.component.html',
   styles: [
-    'pre { display: block; font-size: 110.5%; color: #212529; margin: 0; padding: 0; border: none !important;}'
+    'pre { display: block; color: #212529; margin: 0; padding: 0; border: none !important;}'
   ]
 })
 export class PrintComponent implements OnInit {

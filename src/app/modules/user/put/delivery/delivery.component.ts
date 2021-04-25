@@ -40,6 +40,13 @@ export class DeliveryComponent implements OnInit, OnDestroy {
     if (this.suggestions != null) {
       this.options = this.suggestions.map((item) => ({id: item.ID}) );
     }
+
+    const deliveryPut = JSON.parse(localStorage.getItem('deliveryPut')!);
+
+    if (deliveryPut != null) {
+      this.FecEntrega = deliveryPut.FecEntrega;
+      this.NoIDRecibe = deliveryPut.NoIDRecibe;
+    }
   }
 
   search( event: any ) {
@@ -93,7 +100,8 @@ export class DeliveryComponent implements OnInit, OnDestroy {
 
       this.subscription.push(
         this.putService.putDelivery(data).subscribe((res) => {
-          this.response = res.data[0].Mensaje;
+          console.log(res);
+          this.response = res.data;
           this.setState();
         }, (err) => {
           this.response = err.error.message;
@@ -106,6 +114,23 @@ export class DeliveryComponent implements OnInit, OnDestroy {
   setState() {
     this.loading = false;
     this.putDelivery = false;
+  }
+
+  changeForm() {
+    const data = {
+      ID: this.delivery.id,
+      CodSerTecEntregado: this.delivery.CodSerTecAEntregar,
+      CantTotEntregada: this.delivery.CantTotAEntregar,
+      EntTotal: this.delivery.EntTotal,
+      CausaNoEntrega: this.delivery.CausaNoEntrega,
+      FecEntrega: this.FecEntrega,
+      NoLote: this.delivery.NoLote,
+      TipoIDRecibe: this.delivery.TipoIDRecibe,
+      NoIDRecibe: this.NoIDRecibe,
+      token: JSON.parse(localStorage.getItem('user')!).createdToken
+    }
+
+    localStorage.setItem('deliveryPut', JSON.stringify(data));
   }
 
 }

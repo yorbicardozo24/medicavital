@@ -36,6 +36,14 @@ export class DeliveryReportComponent implements OnInit, OnDestroy {
     if (this.suggestions != null) {
       this.options = this.suggestions.map((item) => ({id: item.ID}) );
     }
+
+    const deliveryReportPut = JSON.parse(localStorage.getItem('deliveryReportPut')!);
+
+    if (deliveryReportPut != null) {
+      this.EstadoEntrega = deliveryReportPut.EstadoEntrega;
+      this.CausaNoEntrega = deliveryReportPut.CausaNoEntrega;
+      this.ValorEntregado = deliveryReportPut.ValorEntregado;
+    }
   }
 
   search( event: any ) {
@@ -72,7 +80,8 @@ export class DeliveryReportComponent implements OnInit, OnDestroy {
 
       this.subscription.push(
         this.putService.putDeliveryReport(data).subscribe((res) => {
-          this.response = res.data[0].Mensaje;
+          console.log(res);
+          this.response = res.data;
           this.setState();
         }, (err) => {
           this.response = err.error.message;
@@ -85,6 +94,17 @@ export class DeliveryReportComponent implements OnInit, OnDestroy {
   setState() {
     this.loading = false;
     this.putDeliveryReport = false;
+  }
+
+  changeForm() {
+    const data = {
+      ID: this.data.id,
+      EstadoEntrega: this.EstadoEntrega,
+      CausaNoEntrega: this.CausaNoEntrega,
+      ValorEntregado: this.ValorEntregado
+    }
+
+    localStorage.setItem('deliveryReportPut', JSON.stringify(data));
   }
 
 }

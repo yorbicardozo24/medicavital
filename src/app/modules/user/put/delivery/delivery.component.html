@@ -7,6 +7,7 @@
             id="CodSerTecAEntregar"
             class="form-control"
             [(ngModel)]="delivery.CodSerTecAEntregar"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12 mb-4">
@@ -17,6 +18,7 @@
             id="CantTotAEntregar"
             class="form-control"
             [(ngModel)]="delivery.CantTotAEntregar"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12 mb-4">
@@ -27,6 +29,7 @@
             id="EntTotal"
             class="form-control"
             [(ngModel)]="delivery.EntTotal"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12 mb-4">
@@ -37,6 +40,7 @@
             id="CausaNoEntregaDelivery"
             class="form-control"
             [(ngModel)]="delivery.CausaNoEntrega"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12 mb-4">
@@ -47,6 +51,7 @@
             id="FecEntrega"
             class="form-control"
             [(ngModel)]="FecEntrega"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12 mb-4">
@@ -57,6 +62,7 @@
             id="NoLote"
             class="form-control"
             [(ngModel)]="delivery.NoLote"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12 mb-4">
@@ -67,6 +73,7 @@
             id="TipoIDRecibe"
             class="form-control"
             [(ngModel)]="delivery.TipoIDRecibe"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12 mb-5">
@@ -77,6 +84,7 @@
             id="NoIDRecibe"
             class="form-control"
             [(ngModel)]="NoIDRecibe"
+            (input)="changeForm()"
         />
     </div>
     <div class="col-md-12">

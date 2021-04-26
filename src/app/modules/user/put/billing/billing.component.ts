@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PutService } from '../../services/put.service';
 import { dispensacion } from '../dispensacion';
@@ -7,7 +7,7 @@ import { dispensacion } from '../dispensacion';
   selector: 'app-billing',
   templateUrl: './billing.component.html'
 })
-export class BillingComponent implements OnInit, OnDestroy {
+export class BillingComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() data: any;
 
@@ -62,6 +62,20 @@ export class BillingComponent implements OnInit, OnDestroy {
       this.NoSubEntrega = billingPut.NoSubEntrega;
       this.CuotaModer = billingPut.CuotaModer;
       this.Copago = billingPut.Copago;
+    }
+  }
+
+  ngOnChanges() {
+    const billingPut = JSON.parse(localStorage.getItem('billingPut')!);
+
+    if (billingPut == null) {
+      this.NoFactura = '';
+      this.CantUnMinDis = '';
+      this.ValorUnitFacturado = '';
+      this.ValorTotFacturado = '';
+      this.NoSubEntrega = 0;
+      this.CuotaModer = 0;
+      this.Copago = 0;
     }
   }
 

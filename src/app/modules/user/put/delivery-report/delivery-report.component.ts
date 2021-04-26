@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PutService } from '../../services/put.service';
 
@@ -6,7 +6,7 @@ import { PutService } from '../../services/put.service';
   selector: 'app-delivery-report',
   templateUrl: './delivery-report.component.html'
 })
-export class DeliveryReportComponent implements OnInit, OnDestroy {
+export class DeliveryReportComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() data: any;
 
@@ -43,6 +43,16 @@ export class DeliveryReportComponent implements OnInit, OnDestroy {
       this.EstadoEntrega = deliveryReportPut.EstadoEntrega;
       this.CausaNoEntrega = deliveryReportPut.CausaNoEntrega;
       this.ValorEntregado = deliveryReportPut.ValorEntregado;
+    }
+  }
+
+  ngOnChanges() {
+    const deliveryReportPut = JSON.parse(localStorage.getItem('deliveryReportPut')!);
+
+    if (deliveryReportPut == null) {
+      this.EstadoEntrega = '1';
+      this.CausaNoEntrega = '0';
+      this.ValorEntregado = '';
     }
   }
 

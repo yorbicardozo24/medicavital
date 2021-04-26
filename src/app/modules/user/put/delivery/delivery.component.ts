@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PutService } from '../../services/put.service';
 
@@ -6,7 +6,7 @@ import { PutService } from '../../services/put.service';
   selector: 'app-delivery',
   templateUrl: './delivery.component.html'
 })
-export class DeliveryComponent implements OnInit, OnDestroy {
+export class DeliveryComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() delivery: any;
 
@@ -46,6 +46,18 @@ export class DeliveryComponent implements OnInit, OnDestroy {
     if (deliveryPut != null) {
       this.FecEntrega = deliveryPut.FecEntrega;
       this.NoIDRecibe = deliveryPut.NoIDRecibe;
+    }
+  }
+
+  ngOnChanges() {
+    const deliveryPut = JSON.parse(localStorage.getItem('deliveryPut')!);
+    if (deliveryPut == null) {
+      this.FecEntrega = ''
+      this.NoIDRecibe = '';
+      this.EntTotal = '0';
+      this.CausaNoEntrega = '0';
+      this.NoLote = 'NULL';
+      this.TipoIDRecibe = 'CC';
     }
   }
 

@@ -25,7 +25,7 @@ export class GetAllComponent implements OnInit {
 
   data: any;
 
-  dataPrint: string[] = [];
+  dataPrint: any[] = [];
 
   constructor(
     private getService: GetService
@@ -138,9 +138,7 @@ export class GetAllComponent implements OnInit {
   }
 
   print( $event: any) {
-    const mipres = localStorage.getItem('mipres');
-    
-    // this.search(mipres, true, $event);
+    this.dataPrint = [];
     this.createTxt($event.id, $event.idFact);
   }
 
@@ -180,7 +178,8 @@ export class GetAllComponent implements OnInit {
     }
 
     if (this.dataPrint.length > 0) {
-      saveAs(new Blob([JSON.stringify(this.dataPrint, null, 2)], { type: 'application/json' }), `${Date.now()}.txt`);
+      const NoFactura = this.dataPrint[3].NoFactura;
+      saveAs(new Blob([NoFactura, "\r\n" ,JSON.stringify(this.dataPrint, null, 2)], { type: 'application/json' }), `${Date.now()}.txt`);
     }
     
   }

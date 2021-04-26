@@ -74,9 +74,16 @@ export class PutComponent implements OnInit {
           }
         }
         
-
-        this.deliveryReport = {
-          id: this.id
+        const deliveryReportPut = JSON.parse(localStorage.getItem('deliveryReportPut')!);
+        if (deliveryReportPut != null && this.id == deliveryReportPut.ID) {
+          this.deliveryReport = {
+            id: this.id
+          }
+        } else {
+          localStorage.removeItem('deliveryReportPut');
+          this.deliveryReport = {
+            id: this.id
+          }
         }
 
         const billingPut = JSON.parse(localStorage.getItem('billingPut')!);

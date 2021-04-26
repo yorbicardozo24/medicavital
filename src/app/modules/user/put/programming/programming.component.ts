@@ -1,5 +1,5 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PutService } from '../../services/put.service';
 
@@ -7,7 +7,7 @@ import { PutService } from '../../services/put.service';
   selector: 'app-programming',
   templateUrl: './programming.component.html'
 })
-export class ProgrammingComponent implements OnInit, OnDestroy {
+export class ProgrammingComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() data: any;
 
@@ -44,6 +44,16 @@ export class ProgrammingComponent implements OnInit, OnDestroy {
       this.tipoId = programmingPut.tipoId;
       this.noIdSede = programmingPut.noIdSede;
       this.codSede = programmingPut.codSede;
+    }
+  }
+
+  ngOnChanges() {
+    const programmingPut = JSON.parse(localStorage.getItem('programmingPut')!);
+
+    if (programmingPut == null) {
+      this.tipoId = 'NI';
+      this.noIdSede = '900843971';
+      this.codSede = 'PROV000786';
     }
   }
 

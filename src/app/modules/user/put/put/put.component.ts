@@ -38,9 +38,10 @@ export class PutComponent implements OnInit {
       const resp = this.suggestions.find((a) => a.ID == this.id);
       if (resp != null || resp != undefined) {
         const programmingPut = JSON.parse(localStorage.getItem('programmingPut')!);
-        if (programmingPut != null) {
+        if (programmingPut != null && this.id == programmingPut.id) {
           this.data = programmingPut;
         } else {
+          localStorage.removeItem('programmingPut');
           this.data = {
             id: this.id,
             fec: resp.FecMaxEnt,
@@ -50,7 +51,7 @@ export class PutComponent implements OnInit {
         }
 
         const deliveryPut = JSON.parse(localStorage.getItem('deliveryPut')!);
-        if (deliveryPut != null) {
+        if (deliveryPut != null && this.id == deliveryPut.ID) {
           this.delivery = {
             id: this.id,
             CodSerTecAEntregar: deliveryPut.CodSerTecEntregado,
@@ -61,6 +62,7 @@ export class PutComponent implements OnInit {
             TipoIDRecibe: deliveryPut.TipoIDRecibe,
           }
         } else {
+          localStorage.removeItem('deliveryPut');
           this.delivery = {
             id: this.id,
             CodSerTecAEntregar: resp.CodSerTecAEntregar,
@@ -78,7 +80,7 @@ export class PutComponent implements OnInit {
         }
 
         const billingPut = JSON.parse(localStorage.getItem('billingPut')!);
-        if (billingPut != null ) {
+        if (billingPut != null && this.id == billingPut.ID) {
           this.billing = {
             id: this.id,
             NoPrescripcion: billingPut.NoPrescripcion,
@@ -92,6 +94,7 @@ export class PutComponent implements OnInit {
             CodSerTecAEntregarBilling: billingPut.CodSerTecAEntregado
           }
         } else {
+          localStorage.removeItem('billingPut');
           this.billing = {
             id: this.id,
             NoPrescripcion: resp.NoPrescripcion,

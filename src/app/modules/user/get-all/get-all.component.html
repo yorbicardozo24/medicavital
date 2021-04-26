@@ -43,16 +43,16 @@
     </div>
     <div class="row" *ngIf="!loading">
         <div class="col-md-3">
-            <app-programming></app-programming>
+            <app-programming (onChange)="search($event)"></app-programming>
         </div>
         <div class="col-md-3">
-            <app-delivery></app-delivery>
+            <app-delivery (onChange)="search($event)"></app-delivery>
         </div>
         <div class="col-md-3">
-            <app-delivery-report></app-delivery-report>
+            <app-delivery-report (onChange)="search($event)"></app-delivery-report>
         </div>
         <div class="col-md-3">
-            <app-billing></app-billing>
+            <app-billing (onChange)="search($event)"></app-billing>
         </div>
     </div>
 </div>

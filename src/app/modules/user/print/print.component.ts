@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { GetService } from '../services/get.service';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-print',
@@ -12,8 +14,11 @@ export class PrintComponent implements OnInit {
 
   data: string[] = [];
 
+  programming: string[] = [];
+
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private txt: GetService
   ) { }
 
   ngOnInit(): void {
@@ -28,6 +33,7 @@ export class PrintComponent implements OnInit {
     if (programming != null) {
       const programmingData = programming.filter((item: any) => item.ID == id);
       if(programmingData.length > 0) {
+        this.programming = programmingData[0];
         this.data.push(programmingData[0]);
       }
     }
@@ -54,11 +60,7 @@ export class PrintComponent implements OnInit {
     }
 
     if (this.data.length > 0) {
-      setTimeout(() => {
-        window.print();
-      }, 2000)
-    } else {
-      alert('Id no encontrado');
+      saveAs(new Blob([JSON.stringify(this.data, null, 2)], { type: 'application/json' }), `${Date.now()}.txt`);
     }
     
   }

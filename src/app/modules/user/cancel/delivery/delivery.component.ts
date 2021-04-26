@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CancelService } from '../../services/cancel.service';
 
@@ -8,6 +8,7 @@ import { CancelService } from '../../services/cancel.service';
 })
 export class DeliveryComponent implements OnInit, OnDestroy {
 
+  @Output() onChange: EventEmitter<any> = new EventEmitter();
   private subscription: Subscription[] = [];
   delivery: [] = [];
   
@@ -37,6 +38,7 @@ export class DeliveryComponent implements OnInit, OnDestroy {
       this.cancelService.cancelDelivery(data).subscribe((res) => {
         this.resp = res.data[0].Mensaje;
         this.setState();
+        this.onChange.emit(localStorage.getItem('mipres'));
       }, (err) => {
         this.resp = err.error.message;
         this.setState();

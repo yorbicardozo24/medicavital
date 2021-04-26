@@ -91,6 +91,7 @@ export class ProgrammingComponent implements OnInit, OnDestroy {
         this.putService.putProgramming(data).subscribe((res) => {
           console.log(res);
           this.response = res.data;
+          localStorage.setItem('update', 'true');
           this.setState();
         }, (err) => {
           this.response = err.error.message;

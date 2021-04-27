@@ -54,7 +54,7 @@ export class GetAllComponent implements OnInit {
       if (deliveryReport != null) {
         this.loading = false;
         this.deliveryReport = deliveryReport;
-        this.deliveryReportData = delivery;
+        this.deliveryReportData = deliveryReport;
       }
       const billing = JSON.parse(localStorage.getItem('billing')!);
       if (billing != null) {
@@ -142,7 +142,7 @@ export class GetAllComponent implements OnInit {
     this.createTxt($event.id, $event.idFact);
   }
 
-  createTxt(id: any, idFact: any) {
+  createTxt(id: any, idFact?: any) {
 
     const programming = JSON.parse(localStorage.getItem('programming')!);
     const delivery = JSON.parse(localStorage.getItem('delivery')!);
@@ -150,36 +150,40 @@ export class GetAllComponent implements OnInit {
     const billing = JSON.parse(localStorage.getItem('billing')!);
 
     if (programming != null) {
-      const programmingData = programming.filter((item: any) => item.ID == id);
+      const programmingData = programming.filter((item: any) => item.ID == id && item.FecAnulacion == null);
       if(programmingData.length > 0) {
         this.dataPrint.push(programmingData[0]);
       }
     }
 
     if (delivery != null) {
-      const deliveryData = delivery.filter((item: any) => item.ID == id);
+      const deliveryData = delivery.filter((item: any) => item.ID == id && item.FecAnulacion == null);
       if(deliveryData.length > 0) {
         this.dataPrint.push(deliveryData[0]);
       }
     }
 
     if (deliveryReport != null) {
-      const deliveryReportData = deliveryReport.filter((item: any) => item.ID == id);
+      const deliveryReportData = deliveryReport.filter((item: any) => item.ID == id && item.FecAnulacion == null);
       if(deliveryReportData.length > 0) {
         this.dataPrint.push(deliveryReportData[0]);
       }
     }
 
     if(billing != null) {
-      const billingData = billing.filter((item: any) => item.ID == idFact);
+      const billingData = billing.filter((item: any) => item.ID == idFact && item.FecAnulacion == null);
       if(billingData.length > 0) {
         this.dataPrint.push(billingData[0]);
       }
     }
 
     if (this.dataPrint.length > 0) {
-      const NoFactura = this.dataPrint[3].NoFactura;
-      saveAs(new Blob([NoFactura, "\r\n" ,JSON.stringify(this.dataPrint, null, 2)], { type: 'application/json' }), `${Date.now()}.txt`);
+      const NoFactura = this.dataPrint[3]?.NoFactura;
+      if(NoFactura != undefined) {
+        saveAs(new Blob([NoFactura, "\r\n" ,JSON.stringify(this.dataPrint, null, 2)], { type: 'application/json' }), `${Date.now()}.txt`);
+      } else {
+        saveAs(new Blob([JSON.stringify(this.dataPrint, null, 2)], { type: 'application/json' }), `${Date.now()}.txt`);
+      }
     }
     
   }

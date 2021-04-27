@@ -1,6 +1,7 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 import { PutService } from '../../services/put.service';
 
 @Component({
@@ -74,13 +75,13 @@ export class ProgrammingComponent implements OnInit, OnDestroy, OnChanges {
 
   accept() {
     if (
-      this.data.id != undefined && this.data.id != null &&
-      this.data.fec != undefined && this.data.fec != null &&
-      this.tipoId != '' &&
-      this.noIdSede != '' &&
-      this.codSede != '' &&
-      this.data.codSerTec != undefined && this.data.codSerTec != null &&
-      this.data.cantidad != undefined && this.data.cantidad != null
+      this.data.id != undefined && this.data.id != null && this.data.id != '' &&
+      this.data.fec != undefined && this.data.fec != null && this.data.fec.trim() != '' &&
+      this.tipoId.trim() != '' &&
+      this.noIdSede.trim() != '' &&
+      this.codSede.trim() != '' &&
+      this.data.codSerTec != undefined && this.data.codSerTec != null && this.data.codSerTec.trim() != '' &&
+      this.data.cantidad != undefined && this.data.cantidad != null && this.data.cantidad.trim() != ''
     ) {
 
       this.putProgramming = true;
@@ -100,7 +101,7 @@ export class ProgrammingComponent implements OnInit, OnDestroy, OnChanges {
       this.subscription.push(
         this.putService.putProgramming(data).subscribe((res) => {
           console.log(res);
-          this.response = res.data;
+          this.response = `Put realizado correctamente.`;
           localStorage.setItem('update', 'true');
           this.setState();
         }, (err) => {
@@ -108,6 +109,12 @@ export class ProgrammingComponent implements OnInit, OnDestroy, OnChanges {
           this.setState();
         })
       );
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error!',
+        text: 'Formulario incompleto',
+      });
     }
   }
 

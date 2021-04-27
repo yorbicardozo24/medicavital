@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 import { PutService } from '../../services/put.service';
 import { dispensacion } from '../dispensacion';
 
@@ -28,9 +29,9 @@ export class BillingComponent implements OnInit, OnDestroy, OnChanges {
   CantUnMinDis: string = '';
   ValorUnitFacturado: string = '';
   ValorTotFacturado: string = '';
-  CuotaModer: number = 0;
-  Copago: number = 0;
-  NoSubEntrega: number = 0;
+  CuotaModer: string = '0';
+  Copago: string = '0';
+  NoSubEntrega: string = '0';
   
   response: any = '';
 
@@ -73,9 +74,9 @@ export class BillingComponent implements OnInit, OnDestroy, OnChanges {
       this.CantUnMinDis = '';
       this.ValorUnitFacturado = '';
       this.ValorTotFacturado = '';
-      this.NoSubEntrega = 0;
-      this.CuotaModer = 0;
-      this.Copago = 0;
+      this.NoSubEntrega = '0';
+      this.CuotaModer = '0';
+      this.Copago = '0';
     }
   }
 
@@ -111,23 +112,44 @@ export class BillingComponent implements OnInit, OnDestroy, OnChanges {
     this.subscription.forEach((sub) => sub.unsubscribe);
   }
 
-  accept() {
+  accept(): any {
     if (
-      this.data.id != undefined && this.data.id != null &&
-      this.data.NoPrescripcion != undefined && this.data.NoPrescripcion != null &&
-      this.data.TipoTec != undefined && this.data.TipoTec != null &&
+      this.data.id != undefined && this.data.id != null && this.data.id.trim() != '' &&
+      this.data.NoPrescripcion != undefined && this.data.NoPrescripcion != null && this.data.NoPrescripcion.trim() != '' &&
+      this.data.TipoTec != undefined && this.data.TipoTec != null && this.data.TipoTec.trim() != '' &&
       this.data.ConTec != undefined && this.data.ConTec != null &&
-      this.data.TipoIDPaciente != undefined && this.data.TipoIDPaciente != null &&
-      this.data.NoIDPaciente != undefined && this.data.NoIDPaciente != null &&
+      this.data.TipoIDPaciente != undefined && this.data.TipoIDPaciente != null && this.data.TipoIDPaciente.trim() != '' &&
+      this.data.NoIDPaciente != undefined && this.data.NoIDPaciente != null && this.data.NoIDPaciente.trim() != '' &&
       this.data.NoEntrega != undefined && this.data.NoEntrega != null &&
-      this.NoFactura != '' &&
-      this.data.NoIDEPS != undefined && this.data.NoIDEPS != null &&
-      this.data.CodEPS != undefined && this.data.CodEPS != null &&
-      this.data.CodSerTecAEntregarBilling != undefined && this.data.CodSerTecAEntregarBilling != null &&
-      this.CantUnMinDis != '' &&
-      this.ValorUnitFacturado != '' &&
-      this.ValorTotFacturado != ''
+      this.NoFactura.trim() != '' &&
+      this.data.NoIDEPS != undefined && this.data.NoIDEPS != null && this.data.NoIDEPS.trim() != '' &&
+      this.data.CodEPS != undefined && this.data.CodEPS != null && this.data.CodEPS.trim() != '' &&
+      this.data.CodSerTecAEntregarBilling != undefined && this.data.CodSerTecAEntregarBilling != null && this.data.CodSerTecAEntregarBilling.trim() != '' &&
+      this.CantUnMinDis.trim() != '' &&
+      this.ValorUnitFacturado.trim() != '' &&
+      this.ValorTotFacturado.trim() != '' &&
+      this.CuotaModer.trim() != '' &&
+      this.Copago.trim() != '' &&
+      this.NoSubEntrega.trim() != ''
       ) {
+        if (typeof(this.data.ConTec) === 'string') {
+          if(this.data.ConTec.trim() == '') {
+            return Swal.fire({
+              icon: 'error',
+              title: 'Error!',
+              text: 'Formulario incompleto',
+            });
+          }
+        }
+        if (typeof(this.data.NoEntrega) === 'string') {
+          if(this.data.NoEntrega.trim() == '') {
+            return Swal.fire({
+              icon: 'error',
+              title: 'Error!',
+              text: 'Formulario incompleto',
+            });
+          }
+        }
       
       this.putBilling = true;
       this.loading = true;
@@ -156,7 +178,7 @@ export class BillingComponent implements OnInit, OnDestroy, OnChanges {
       this.subscription.push(
         this.putService.putBilling(data).subscribe((res) => {
           console.log(res);
-          this.response = res.data;
+          this.response = `Put realizado correctamente.`;
           localStorage.setItem('update', 'true');
           this.setState();
         }, (err) => {
@@ -164,6 +186,12 @@ export class BillingComponent implements OnInit, OnDestroy, OnChanges {
           this.setState();
         })
       );
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error!',
+        text: 'Formulario incompleto',
+      });
     }
   }
 

@@ -67,8 +67,8 @@ export class PutComponent implements OnInit {
             id: this.id,
             CodSerTecAEntregar: resp.CodSerTecAEntregar,
             CantTotAEntregar: resp.CantTotAEntregar,
-            EntTotal: 0,
-            CausaNoEntrega: 0,
+            EntTotal: '0',
+            CausaNoEntrega: '0',
             NoLote: 'NULL',
             TipoIDRecibe: 'CC',
           }
@@ -113,8 +113,8 @@ export class PutComponent implements OnInit {
             NoIDEPS: resp.NoIDEPS,
             CodEPS: resp.CodEPS,
             CodSerTecAEntregarBilling: resp.CodSerTecAEntregar,
-            CuotaModer: 0,
-            Copago: 0,
+            CuotaModer: '0',
+            Copago: '0',
           }
         }
 

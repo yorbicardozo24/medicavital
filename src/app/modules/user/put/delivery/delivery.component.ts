@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 import { PutService } from '../../services/put.service';
 
 @Component({
@@ -83,15 +84,15 @@ export class DeliveryComponent implements OnInit, OnDestroy, OnChanges {
 
   accept() {
     if (
-      this.delivery.id != undefined && this.delivery.id != null &&
-      this.delivery.CodSerTecAEntregar != undefined && this.delivery.CodSerTecAEntregar != null &&
-      this.delivery.CantTotAEntregar != undefined && this.delivery.CantTotAEntregar != null &&
-      this.delivery.EntTotal != undefined && this.delivery.EntTotal != null &&
-      this.delivery.CausaNoEntrega != undefined && this.delivery.CausaNoEntrega != null &&
-      this.FecEntrega != '' &&
-      this.delivery.NoLote != undefined &&
-      this.delivery.TipoIDRecibe != undefined && this.delivery.TipoIDRecibe != null &&
-      this.NoIDRecibe != ''
+      this.delivery.id != undefined && this.delivery.id != null && this.delivery.id.trim() != '' &&
+      this.delivery.CodSerTecAEntregar != undefined && this.delivery.CodSerTecAEntregar != null && this.delivery.CodSerTecAEntregar.trim() != '' &&
+      this.delivery.CantTotAEntregar != undefined && this.delivery.CantTotAEntregar != null && this.delivery.CantTotAEntregar.trim() != '' &&
+      this.delivery.EntTotal != undefined && this.delivery.EntTotal != null && this.delivery.EntTotal.trim() != '' &&
+      this.delivery.CausaNoEntrega != undefined && this.delivery.CausaNoEntrega != null && this.delivery.CausaNoEntrega.trim() != '' &&
+      this.FecEntrega.trim() != '' &&
+      this.delivery.NoLote != undefined && this.delivery.NoLote != null && this.delivery.NoLote.trim() != '' &&
+      this.delivery.TipoIDRecibe != undefined && this.delivery.TipoIDRecibe != null && this.delivery.TipoIDRecibe.trim() != '' &&
+      this.NoIDRecibe.trim() != ''
     ) {
 
       this.putDelivery = true;
@@ -113,7 +114,7 @@ export class DeliveryComponent implements OnInit, OnDestroy, OnChanges {
       this.subscription.push(
         this.putService.putDelivery(data).subscribe((res) => {
           console.log(res);
-          this.response = res.data;
+          this.response = `Put realizado correctamente.`;
           localStorage.setItem('update', 'true');
           this.setState();
         }, (err) => {
@@ -121,6 +122,12 @@ export class DeliveryComponent implements OnInit, OnDestroy, OnChanges {
           this.setState();
         })
       );
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error!',
+        text: 'Formulario incompleto',
+      });
     }
   }
 

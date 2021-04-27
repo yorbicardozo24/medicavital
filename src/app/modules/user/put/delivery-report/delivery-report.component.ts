@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 import { PutService } from '../../services/put.service';
 
 @Component({
@@ -73,10 +74,10 @@ export class DeliveryReportComponent implements OnInit, OnDestroy, OnChanges {
 
   accept() {
     if (
-      this.data.id != undefined && this.data.id != null &&
-      this.EstadoEntrega != '' &&
-      this.CausaNoEntrega != '' &&
-      this.ValorEntregado != ''
+      this.data.id != undefined && this.data.id != null && this.data.id.trim() != '' &&
+      this.EstadoEntrega.trim() != '' &&
+      this.CausaNoEntrega.trim() != '' &&
+      this.ValorEntregado.trim() != ''
       ) {
       this.putDeliveryReport = true;
       this.loading = true;
@@ -91,7 +92,7 @@ export class DeliveryReportComponent implements OnInit, OnDestroy, OnChanges {
       this.subscription.push(
         this.putService.putDeliveryReport(data).subscribe((res) => {
           console.log(res);
-          this.response = res.data;
+          this.response = `Put realizado correctamente.`;
           localStorage.setItem('update', 'true');
           this.setState();
         }, (err) => {
@@ -99,6 +100,12 @@ export class DeliveryReportComponent implements OnInit, OnDestroy, OnChanges {
           this.setState();
         })
       );
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error!',
+        text: 'Formulario incompleto',
+      });
     }
   }
 

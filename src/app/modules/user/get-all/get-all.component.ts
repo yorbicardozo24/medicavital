@@ -198,7 +198,90 @@ export class GetAllComponent implements OnInit {
       this.filterByConTec($event.conTec);
     } else if ($event.tipo != '' && $event.conTec != '' && $event.nEntrega == '') {
       this.filterByTipoAndConTec($event.tipo, $event.conTec);
+    } else if ($event.tipo == '' && $event.conTec != '' && $event.nEntrega != '') {
+      this.filterByConTecAndNEntrega($event.conTec, $event.nEntrega);
+    } else if ($event.tipo == '' && $event.conTec == '' && $event.nEntrega != '') {
+      this.filterByNEntrega($event.nEntrega);
+    } else if ($event.tipo != '' && $event.conTec == '' && $event.nEntrega != '') {
+      this.filterByTipoAndNEntrega($event.tipo, $event.nEntrega);
     }
+  }
+
+  filterByTipoAndNEntrega(tipo: any, nEntrega: any) {
+    this.programming = 
+    this.programming.filter(
+      (item: any) =>
+        item.TipoTec == tipo && 
+        item.NoEntrega == nEntrega
+      );
+  this.delivery = 
+    this.delivery.filter(
+      (item: any) =>
+        item.TipoTec == tipo &&
+        item.NoEntrega == nEntrega
+      );
+  this.deliveryReport = 
+    this.deliveryReport.filter(
+      (item: any) => 
+        item.TipoTec == tipo &&
+        item.NoEntrega == nEntrega 
+      );
+  this.billing = 
+    this.billing.filter(
+      (item: any) => 
+        item.TipoTec == tipo &&
+        item.NoEntrega == nEntrega
+      );
+  }
+
+  filterByNEntrega(nEntrega: string) {
+    this.programming = 
+    this.programming.filter(
+      (item: any) =>
+        item.NoEntrega == nEntrega
+      );
+  this.delivery = 
+    this.delivery.filter(
+      (item: any) =>
+        item.NoEntrega == nEntrega
+      );
+  this.deliveryReport = 
+    this.deliveryReport.filter(
+      (item: any) => 
+        item.NoEntrega == nEntrega 
+      );
+  this.billing = 
+    this.billing.filter(
+      (item: any) => 
+        item.NoEntrega == nEntrega
+      );
+  }
+
+  filterByConTecAndNEntrega(conTec: string, nEntrega: any) {
+    this.programming = 
+    this.programming.filter(
+      (item: any) =>
+        item.ConTec == conTec && 
+        item.NoEntrega == nEntrega
+      );
+  this.delivery = 
+    this.delivery.filter(
+      (item: any) =>
+        item.ConTec == conTec &&
+        item.NoEntrega == nEntrega
+      );
+  this.deliveryReport = 
+    this.deliveryReport.filter(
+      (item: any) => 
+        item.ConTec == conTec &&
+        item.NoEntrega == nEntrega 
+      );
+  this.billing = 
+    this.billing.filter(
+      (item: any) => 
+        item.ConTec == conTec &&
+        item.NoEntrega == nEntrega
+      );
   }
 
   filterByTipoAndConTec(tipo: string, conTec: any) {

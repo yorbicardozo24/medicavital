@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 import { CancelService } from '../../services/cancel.service';
 
 @Component({
@@ -35,7 +36,13 @@ export class DeliveryReportComponent implements OnInit, OnDestroy {
       this.cancelService.cancelDeliveryReport(data).subscribe((res) => {
         this.resp = res.data[0].Mensaje;
         this.setState();
-        this.onChange.emit(localStorage.getItem('mipres'));
+        Swal.fire(
+          'Anulado',
+          `${res.data[0].Mensaje}`,
+          'success'
+        ).then( () => {
+          this.onChange.emit(localStorage.getItem('mipres'));
+        });
       }, (err) => {
         this.resp = err.error.message;
         this.setState();
